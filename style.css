@@ -1,0 +1,679 @@
+/* ===================================================
+   RESET E CONFIGURAÇÕES GERAIS
+   =================================================== */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    
+    /* CONFIGURAÇÃO CRUCIAL DE LAYOUT: */
+    display: flex;
+    flex-direction: row; /* Coloca Catálogo e Carrinho lado a lado */
+    
+    /* EMPURRA TUDO PARA BAIXO: */
+    /* Isso cria um espaço vazio no topo igual à altura do Header */
+    padding-top: 80px; 
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+
+/* ===================================================
+   CABEÇALHO (BANNER FIXO - VERSÃO MAIOR)
+   =================================================== */
+header {
+    background-color: #f7a399;
+    color: white;
+    width: 100%;
+    
+    /* Removemos a altura fixa e usamos padding para dar volume */
+    height: auto; 
+    min-height: 120px; /* Garante um tamanho mínimo bom */
+    
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1000; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra mais bonita */
+    
+    /* Centralização e Espaçamento Interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* AQUI ESTÁ A MUDANÇA: Mais espaço em cima e embaixo */
+    padding: 30px 0; 
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* ===================================================
+   MENU DE NAVEGAÇÃO (FILTRO)
+   =================================================== */
+
+.menu-navegacao {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+    flex-wrap: wrap; /* Quebra linha no celular se tiver muitos botões */
+}
+
+.btn-menu {
+    background-color: rgba(255, 255, 255, 0.3); /* Fundo transparente */
+    border: 1px solid white;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px; /* Botão redondinho */
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: auto; /* Sobrescreve o width: 100% dos botões normais */
+    margin-top: 0;
+    transition: all 0.3s;
+}
+
+.btn-menu:hover {
+    background-color: white;
+    color: #cc0066;
+}
+
+/* Estilo para o botão que está selecionado no momento */
+.btn-menu.ativo {
+    background-color: white;
+    color: #cc0066;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Ajuste a altura do Header para caber o menu novo */
+header {
+    height: auto; /* Deixa a altura automática para caber o menu */
+    min-height: 80px;
+    flex-direction: column; /* Coloca o título em cima do menu */
+    padding-bottom: 10px;
+}
+
+/* Ajuste de altura para compensar o banner maior */
+body {
+    padding-top: 170px; /* Aumentado para colar no novo header */
+}
+
+/* O carrinho desce junto */
+#carrinho-lateral {
+    top: 170px; 
+    height: calc(100vh - 170px);
+}
+
+/* Classe utilitária para esconder seções */
+.escondido {
+    display: none !important;
+}
+
+/* ===================================================
+   CATÁLOGO (PRINCIPAL)
+   =================================================== */
+
+#catalogo-principal {
+    padding: 20px;
+    flex-grow: 1; /* Ocupa o espaço que sobrar */
+    /* Não precisa mais de margin-top, pois o body já tem padding */
+}
+
+/* Configuração do Grid de Produtos */
+.colecao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.colecao h2 {
+    width: 100%;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Imagem de Cores */
+.img-referencia-cores {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 5px;
+}
+
+/* ===================================================
+   CARD DO PRODUTO
+   =================================================== */
+
+.brinco-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    
+    /* Tamanho do card */
+    flex: 1 1 250px; /* Base de 250px */
+    max-width: 300px; /* Não deixa ficar gigante */
+    box-sizing: border-box;
+}
+
+.brinco-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.card-detalhes h3 {
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.preco {
+    font-weight: bold;
+    color: #cc0066;
+    margin-bottom: 10px;
+}
+
+/* Inputs dentro do Card */
+.brinco-card label {
+    font-size: 0.9em;
+    margin-right: 5px;
+}
+
+.brinco-card select {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%; /* Ocupa a largura para ficar alinhado */
+    margin-bottom: 10px;
+}
+
+.input-quantidade {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+button.adicionar-carrinho {
+    background-color: #cc0066;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+button.adicionar-carrinho:hover {
+    background-color: #a30052;
+}
+
+/* ===================================================
+   CARRINHO LATERAL (DESKTOP)
+   =================================================== */
+
+#carrinho-lateral {
+    width: 320px;
+    min-width: 320px;
+    background-color: #fff8e1;
+    border-left: 1px solid #e0e0e0;
+    padding: 15px;
+    box-sizing: border-box;
+    
+    position: sticky;
+    top: 80px; 
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    
+    z-index: 900;
+}
+
+/* Título */
+#carrinho-lateral h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Lista de Itens */
+#lista-carrinho {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#lista-carrinho li {
+    background: white;
+    border-bottom: 1px dashed #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-detalhes {
+    font-size: 0.9rem;
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.item-subtotal {
+    font-weight: bold;
+    color: #555;
+    margin: 2px 0 0 0;
+}
+
+.item-controles {
+    display: flex;
+    align-items: center;
+}
+
+.input-qtd-carrinho {
+    width: 35px;
+    text-align: center;
+    margin-right: 5px;
+    padding: 2px;
+}
+
+.remover-item {
+    width: 25px;
+    height: 25px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+/* Botão Finalizar */
+#finalizar-compra {
+    background-color: #25d366; /* Cor WhatsApp */
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#finalizar-compra:hover {
+    background-color: #128c7e;
+}
+
+/* Estado ENCOLHIDO (Desktop) */
+.carrinho-oculto {
+    width: 60px !important; /* Fica fininho */
+    min-width: 60px !important;
+    overflow: hidden;
+}
+
+.carrinho-oculto .carrinho-conteudo {
+    display: none;
+}
+
+.carrinho-oculto h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    border: none;
+}
+
+/* ===================================================
+   MODAL DE CHECKOUT
+   =================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000; /* Acima do header */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
+
+.modal-conteudo {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-conteudo input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.fechar-modal {
+    background-color: #888;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+/* ===================================================
+   CABEÇALHO DA COLEÇÃO (CORREÇÃO DE POSIÇÃO)
+   =================================================== */
+
+/* Garante que o título e a imagem da coleção ocupem a linha inteira */
+.cabecalho-colecao {
+    width: 100%;       /* Ocupa toda a largura da tela */
+    display: block;    /* Garante que fique em uma linha própria */
+    text-align: center; /* Centraliza o texto e a imagem */
+    margin-bottom: 20px;
+}
+
+.cabecalho-colecao h2 {
+    color: #cc0066;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    margin-top: 10px; 
+}
+
+.img-referencia-cores {
+    max-width: 300px; /* Limita o tamanho da imagem da paleta */
+    margin: 0 auto;   /* Centraliza a imagem */
+}
+
+/* ===================================================
+   RESPONSIVIDADE (CELULAR / TABLET) - COM CORREÇÃO FORÇADA
+   =================================================== */
+
+@media (max-width: 768px) {
+    
+    body {
+        flex-direction: column;
+        padding-top: 170px;
+    }
+
+    /* Grid de 2 colunas para os produtos */
+    .colecao {
+        gap: 10px; 
+        padding: 5px; 
+        justify-content: space-between; 
+    }
+
+    .brinco-card {
+        flex: 0 0 calc(50% - 5px); 
+        max-width: calc(50% - 5px);
+        margin: 0; 
+        padding: 10px;
+    }
+
+    /* --- CARRINHO FLUTUANTE (MOBILE - ESTADO FECHADO) --- */
+    
+    #carrinho-lateral {
+        position: fixed;
+        bottom: 20px !important; /* Força a posição embaixo */
+        right: 20px !important;
+        top: auto !important;    /* Força anular o 'top' do desktop */
+        
+        /* CORREÇÃO DO TAMANHO GIGANTE: */
+        width: auto !important;     /* Anula os 320px do desktop */
+        min-width: 0 !important;    /* Remove largura mínima */
+        height: auto !important;    /* Anula a altura de tela cheia */
+        max-height: 80vh !important;
+        
+        padding: 12px 20px;
+        
+        background-color: #25d366;
+        color: white;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 2000;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* Esconde o conteúdo interno quando fechado */
+    #carrinho-lateral .carrinho-conteudo {
+        display: none !important;
+    }
+
+    /* --- TRUQUE DE TEXTO DA PÍLULA --- */
+    /* Quando fechado: Esconde o título original e mostra a frase */
+    #carrinho-lateral:not(.expandido) h2 {
+        font-size: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    #carrinho-lateral:not(.expandido) h2::after {
+        content: "🛒 Meu carrinho. Clique para ver.";
+        font-size: 0.9rem;
+        display: block;
+        white-space: nowrap;
+    }
+    
+    /* --- ESTADO EXPANDIDO (ABERTO) --- */
+    
+    #carrinho-lateral.expandido {
+        width: 90% !important;  /* Ocupa a tela ao abrir */
+        right: 5% !important;
+        bottom: 50px !important;
+        border-radius: 15px;
+        background-color: #fff8e1;
+        color: black;
+        
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    #carrinho-lateral.expandido .carrinho-conteudo {
+        display: block !important;
+        overflow-y: auto;
+        margin-top: 10px;
+    }
+
+    #carrinho-lateral.expandido h2 {
+        font-size: 1.2rem !important;
+        border-bottom: 1px solid #ccc !important;
+        padding-bottom: 10px !important;
+        text-align: left;
+    }
+    
+    #carrinho-lateral.expandido h2::after {
+        display: none;
+    }
+}
+
+/* ===================================================
+   LIGHTBOX (IMAGEM EM TELA CHEIA)
+   =================================================== */
+
+/* Indicar que a imagem é clicável */
+.brinco-card img {
+    cursor: zoom-in; /* Mostra uma lupa no computador */
+    transition: transform 0.2s; /* Efeito suave se quiser animar */
+}
+
+/* O fundo escuro que cobre a tela */
+.lightbox {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 5000; /* BEM ALTO para ficar acima de tudo (header, modal de compra, etc) */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto 90% transparente */
+    
+    /* Centraliza a imagem na tela */
+    align-items: center;
+    justify-content: center;
+}
+
+/* A imagem ampliada */
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90vh; /* Máximo de 90% da altura da tela */
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    object-fit: contain; /* Garante que a imagem não distorça */
+    animation: zoom 0.3s; /* Pequena animação de entrada */
+}
+
+/* Botão de Fechar (X) */
+.fechar-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.fechar-btn:hover {
+    color: #f7a399; /* Cor do seu tema */
+}
+
+/* Animaçãozinha de Zoom */
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* ===================================================
+   MENU DE NAVEGAÇÃO
+   =================================================== */
+
+.menu-navegacao {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-menu {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: auto; /* Sobrescreve estilo padrão de botão */
+    margin-top: 0;
+}
+
+.btn-menu.ativo {
+    background: white;
+    color: #cc0066;
+    font-weight: bold;
+}
+
+/* Ajuste de altura do header para caber o menu */
+header {
+    height: auto;
+    min-height: 80px;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+body { padding-top: 150px; } 
+#carrinho-lateral { top: 150px; height: calc(100vh - 150px); }
+
+
+/* ===================================================
+   LÓGICA DO "VER TUDO" MISTURADO
+   =================================================== */
+
+/* Quando o container principal tem a classe 'modo-misturado': */
+#catalogo-principal.modo-misturado {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* 1. Faz as seções perderem a estrutura visual, liberando os cards */
+#catalogo-principal.modo-misturado .colecao {
+    display: contents; 
+}
+
+/* 2. Esconde os Títulos e Banners das coleções nesse modo */
+#catalogo-principal.modo-misturado .cabecalho-colecao {
+    display: none;
+}
+
+/* Classe para esconder seções inteiras (quando filtrar por específica) */
+.escondido {
+    display: none !important;
+}
+
+/* Ajuste Mobile para o modo misturado */
+@media (max-width: 768px) {
+    #catalogo-principal.modo-misturado {
+        gap: 10px;
+        padding: 5px;
+        justify-content: space-between;
+    }
+}
+
+/* ===================================================
+   TÍTULO "TODOS OS BRINCOS"
+   =================================================== */
+
+/* 1. Por padrão, ele fica escondido (pois o padrão é ver coleções) */
+#cabecalho-todos {
+    display: none;
+}
+
+/* 2. Quando o modo misturado é ativado (Ver Tudo), ele aparece */
+#catalogo-principal.modo-misturado #cabecalho-todos {
+    display: block !important; /* O !important garante que ele vença outras regras */
+    width: 100%; /* Ocupa a linha toda */
+    text-align: center;
+    margin-bottom: 20px;
+    order: -1; /* Garante que fique visualmente em primeiro lugar no Flexbox */
+}
+
+#catalogo-principal.modo-misturado #cabecalho-todos h2 {
+    color: #cc0066;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #ccc; /* Linha decorativa igual das coleções */
+    padding-bottom: 5px;
+    display: inline-block; /* Linha fica do tamanho do texto */
+    width: 100%;
+}

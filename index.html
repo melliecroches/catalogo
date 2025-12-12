@@ -1,0 +1,210 @@
+<!-- ARQUIVO PRINCIPAL -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Virtual de Brincos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>💎 Seu Catálogo de Brincos</h1>
+        
+        <nav class="menu-navegacao">
+            <button class="btn-menu ativo" onclick="filtrarColecao('todos')">Ver Tudo</button>
+            <button class="btn-menu" onclick="filtrarColecao('verao')">Verão 2024</button>
+            <button class="btn-menu" onclick="filtrarColecao('classicos')">Clássicos</button>
+        </nav>
+    </header>
+
+    <main id="catalogo-principal">
+        
+        <div id="cabecalho-todos" class="cabecalho-colecao">
+            <h2>💎 Todos os Brincos</h2>
+        </div>
+
+        <section id="verao" class="colecao">
+            <div class="cabecalho-colecao">
+                <h2>✨ Coleção Verão 2024</h2>
+            </div>
+            
+            <div class="brinco-card">
+                <img src="imagens/brinco-mar.jpg" alt="Brinco Lua" loading="lazy">
+                <div class="card-detalhes">
+                    <h3>Brinco Lua</h3>
+                    <p class="preco">R$ 29,90</p>
+                    
+                    <label for="cor-lua">Cor:</label>
+                    <select id="cor-lua">
+                        <option value="Dourado">Dourado</option>
+                        <option value="Prateado">Prateado</option>
+                    </select>
+
+                    <label for="qtd-lua">Qtd:</label>
+                    <input type="number" id="qtd-lua" value="1" min="1" max="100" class="input-quantidade">
+
+                    <button class="adicionar-carrinho" data-nome="Brinco Lua" data-preco="29.90">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="brinco-card">
+                <img src="imagens/brinco-sol.jpg" alt="Brinco Estrela" loading="lazy">
+                <div class="card-detalhes">
+                    <h3>Brinco Estrela</h3>
+                    <p class="preco">R$ 39,90</p>
+                    
+                    <label for="cor-estrela">Cor:</label>
+                    <select id="cor-estrela">
+                        <option value="Dourado">Dourado</option>
+                        <option value="Rosê">Rosê</option>
+                    </select>
+
+                    <label for="qtd-estrela">Qtd:</label>
+                    <input type="number" id="qtd-estrela" value="1" min="1" max="100" class="input-quantidade">
+
+                    <button class="adicionar-carrinho" data-nome="Brinco Estrela" data-preco="39.90">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="brinco-card">
+                <img src="imagens/brinco-mar.jpg" alt="Argola Clássica" loading="lazy">
+                <div class="card-detalhes">
+                    <h3>Argola Clássica</h3>
+                    <p class="preco">R$ 55,00</p>
+                    
+                    <label for="cor-argola">Cor:</label>
+                    <select id="cor-argola">
+                        <option value="Ouro 18k">Ouro 18k</option>
+                        <option value="Prata 925">Prata 925</option>
+                    </select>
+
+                    <label for="qtd-argola">Qtd:</label>
+                    <input type="number" id="qtd-argola" value="1" min="1" max="100" class="input-quantidade">
+
+                    <button class="adicionar-carrinho" data-nome="Argola Clássica" data-preco="55.00">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="brinco-card">
+                <img src="imagens/brinco-sol.jpg" alt="Brinco Gota" loading="lazy">
+                <div class="card-detalhes">
+                    <h3>Brinco Gota</h3>
+                    <p class="preco">R$ 42,00</p>
+                    
+                    <label for="cor-gota">Cor:</label>
+                    <select id="cor-gota">
+                        <option value="Azul">Azul</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Vermelho">Vermelho</option>
+                    </select>
+
+                    <label for="qtd-gota">Qtd:</label>
+                    <input type="number" id="qtd-gota" value="1" min="1" max="100" class="input-quantidade">
+
+                    <button class="adicionar-carrinho" data-nome="Brinco Gota" data-preco="42.00">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="brinco-card">
+                <img src="imagens/brinco-mar.jpg" alt="Brinco Pérola" loading="lazy">
+                <div class="card-detalhes">
+                    <h3>Brinco Pérola</h3>
+                    <p class="preco">R$ 60,00</p>
+                    
+                    <label for="cor-perola">Cor:</label>
+                    <select id="cor-perola">
+                        <option value="Branca">Branca</option>
+                        <option value="Creme">Creme</option>
+                    </select>
+
+                    <label for="qtd-perola">Qtd:</label>
+                    <input type="number" id="qtd-perola" value="1" min="1" max="100" class="input-quantidade">
+
+                    <button class="adicionar-carrinho" data-nome="Brinco Pérola" data-preco="60.00">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="brinco-card">
+                <img src="imagens/brinco-sol.jpg" alt="Brinco Coração" loading="lazy">
+                <div class="card-detalhes">
+                    <h3>Brinco Coração</h3>
+                    <p class="preco">R$ 25,00</p>
+                    
+                    <label for="cor-coracao">Cor:</label>
+                    <select id="cor-coracao">
+                        <option value="Dourado">Dourado</option>
+                        <option value="Prateado">Prateado</option>
+                    </select>
+
+                    <label for="qtd-coracao">Qtd:</label>
+                    <input type="number" id="qtd-coracao" value="1" min="1" max="100" class="input-quantidade">
+
+                    <button class="adicionar-carrinho" data-nome="Brinco Coração" data-preco="25.00">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="classicos" class="colecao">
+            <div class="cabecalho-colecao">
+                <h2>💍 Clássicos e Elegantes</h2>
+            </div>
+            
+            </section>
+
+    </main>
+
+    
+    <aside id="carrinho-lateral">
+        <h2>🛍️ Meu Pedido</h2> 
+        
+        <div class="carrinho-conteudo">
+            <ul id="lista-carrinho">
+                </ul>
+            <div class="total-info">
+                <p>Total de Itens: <span id="total-itens">0</span></p>
+                <p>Valor Estimado: R$ <span id="valor-total">0.00</span></p>
+            </div>
+            <button id="finalizar-compra" onclick="abrirModalCheckout()">Finalizar Pedido</button>
+        </div>
+    </aside>
+
+    <div id="modal-checkout" class="modal">
+        <div class="modal-conteudo">
+            <h3>Preencha seus Dados (Checkout)</h3>
+            <label for="nome-cliente">Nome:</label>
+            <input type="text" id="nome-cliente" required placeholder="Seu Nome Completo">
+            
+            <label for="endereco-cliente">Endereço:</label>
+            <input type="text" id="endereco-cliente" required placeholder="Rua, Número, Bairro, Cidade">
+
+            <label for="whatsapp-cliente">WhatsApp:</label>
+            <input type="tel" id="whatsapp-cliente" required placeholder="Ex: 5521987654321">
+
+            <button onclick="enviarPedidoWhatsapp()">Confirmar e Enviar</button>
+            <button class="fechar-modal" onclick="fecharModalCheckout()">Voltar</button>
+        </div>
+    </div>
+    
+    <div id="lightbox" class="lightbox" onclick="fecharLightbox(event)">
+        <span class="fechar-btn">&times;</span>
+        <img class="lightbox-img" id="imagem-destaque" src="" alt="Imagem Ampliada">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
