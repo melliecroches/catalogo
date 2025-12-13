@@ -327,8 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     imagensProdutos.forEach(img => {
         img.addEventListener('click', function() {
-            lightbox.style.display = 'flex';
-            imagemDestaque.src = this.src;
+            lightbox.style.display = 'flex'; // Mostra o modal (flex para centralizar)
+            imagemDestaque.src = this.src;   // Copia a foto clicada para o destaque
         });
     });
 
@@ -681,8 +681,6 @@ function voltarAoTopo() {
 // =================================================================
 // FUNÇÕES DA PÁGINA DE DETALHES DO PRODUTO
 // =================================================================
-
-// ARQUIVO: script.js
 
 function abrirProduto(idProduto) {
     const produto = produtos.find(p => p.id === idProduto);

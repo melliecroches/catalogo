@@ -2,27 +2,20 @@
    RESET E CONFIGURAÇÕES GERAIS
    =================================================== */
 html {
-    overflow-y: scroll; /* A barra de rolagem fica sempre visível, evitando pulos laterais */
+    overflow-y: scroll; 
 }
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     background-color: #f4f4f4;
-    
     padding-top: 0; 
-    
     min-height: 100vh;
 }
 
 /* ===================================================
    ESTRUTURA PRINCIPAL (CORREÇÃO DE LAYOUT)
    =================================================== */
-/* ATENÇÃO: Este nome deve ser igual ao que está no seu HTML.
-   Se no HTML estiver "layout-geral", mude aqui.
-   Se estiver "container-principal", mantenha assim.
-   Isso coloca o Conteúdo e o Carrinho lado a lado.
-*/
 .container-principal, .layout-geral {
     display: flex;
     flex-direction: row;
@@ -32,9 +25,9 @@ body {
 
 /* Coluna da Esquerda (Segura os Produtos e o Rodapé) */
 .coluna-conteudo, .conteudo-pagina {
-    flex: 1; /* Ocupa o espaço restante */
+    flex: 1; 
     display: flex;
-    flex-direction: column; /* Um em cima do outro */
+    flex-direction: column; 
     min-width: 0;
 }
 
@@ -91,14 +84,14 @@ header h1 { margin: 0; font-size: 1.5rem; }
    =================================================== */
 .barra-busca {
     width: 90%;
-    max-width: 400px; /* Não deixa ficar gigante no PC */
+    max-width: 400px;
     padding: 12px 20px;
     border: none;
-    border-radius: 25px; /* Bem redondinha */
+    border-radius: 25px;
     margin-top: 15px;
     font-size: 1rem;
-    outline: none; /* Remove a borda azul padrão */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave */
+    outline: none; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
     transition: transform 0.2s;
 }
 
@@ -110,7 +103,7 @@ header h1 { margin: 0; font-size: 1.5rem; }
 
 /* Ajuste na altura do header para caber a busca */
 header {
-    padding-bottom: 20px; /* Mais espaço embaixo */
+    padding-bottom: 20px; 
 }
 
 /* ===================================================
@@ -121,10 +114,10 @@ header {
 .cabecalho-colecao {
     width: 100%;
     display: flex;
-    flex-direction: column; /* FORÇA UM FICAR EM BAIXO DO OUTRO */
-    align-items: center;    /* Centraliza tudo horizontalmente */
+    flex-direction: column; 
+    align-items: center;    
     justify-content: center;
-    margin-bottom: 30px;    /* Espaço entre esse bloco e os produtos */
+    margin-bottom: 30px;    
     position: relative;
 }
 
@@ -133,10 +126,10 @@ header {
     color: #cc0066;
     font-size: 1.8rem;
     text-align: center;
-    margin: 0 0 10px 0; /* Margem de 10px em baixo para as bolinhas não colarem no texto */
+    margin: 0 0 10px 0; 
     padding-bottom: 0;
-    border: none;       /* Removemos a borda do H2 para desenhar uma linha mais bonita abaixo de tudo */
-    width: auto;        /* Ocupa só o tamanho do texto */
+    border: none;       
+    width: auto;        
 }
 
 /* ===================================================
@@ -151,7 +144,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px; /* Espaço entre as bolinhas */
+    gap: 10px; 
     margin-bottom: 15px;
     padding: 0 10px;
 }
@@ -163,24 +156,24 @@ header {
     align-items: center;
     justify-content: center;
     
-    width: 30px;  /* Aumentei um pouquinho para o número ficar confortável */
+    width: 30px;  
     height: 30px; 
     border-radius: 50%;
     
-    border: 2px solid white; /* Borda branca para destacar do fundo cinza */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra mais bonita */
+    border: 2px solid white; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
     
     font-size: 0.9rem;
     font-weight: bold;
     color: white;
-    text-shadow: 0 0 3px rgba(0,0,0,0.3); /* Sombra forte no texto para ler em cores claras */
+    text-shadow: 0 0 3px rgba(0,0,0,0.3); 
     
-    cursor: help; /* Mostra uma ? pequena ao passar o mouse (indicando que tem info/nome no title) */
+    cursor: help; 
     transition: transform 0.2s;
 }
 
 .cor-bolinha-numerada:hover {
-    transform: scale(1.15); /* Aumenta levemente ao passar o mouse */
+    transform: scale(1.15); 
 }
 
 .nome-cor-legenda {
@@ -239,12 +232,12 @@ header {
 /* Garante que o título ocupe a largura total e quebre a linha */
 #catalogo-principal.modo-misturado #cabecalho-todos {
     display: flex !important;
-    flex-direction: column !important; /* Mantém o tracinho certo */
-    align-items: center !important;    /* Centraliza o texto */
+    flex-direction: column !important; 
+    align-items: center !important;    
     order: -1;
     
-    width: 100%;        /* Ocupa tudo */
-    flex-basis: 100%;   /* Força a quebra de linha para os cards irem pra baixo */
+    width: 100%;        
+    flex-basis: 100%;   
     margin-bottom: 30px;
 }
 
@@ -274,7 +267,7 @@ header {
 /* LINHAS 211-215 NO SEU ARQUIVO */
 .brinco-card select, 
 .brinco-card input.input-quantidade,
-.brinco-card .card-detalhes label { /* Adiciona o label para sumir também */
+.brinco-card .card-detalhes label { 
     display: none !important; 
 }
 
@@ -332,7 +325,7 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 #carrinho-lateral h2 {
     font-size: 1.2rem;
     color: #333;
-    border-bottom: 2px solid #f7a399; /* Detalhe rosa */
+    border-bottom: 2px solid #f7a399; 
     padding-bottom: 10px;
     margin-top: 0;
     margin-bottom: 15px;
@@ -349,16 +342,16 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 /* Cada Item do Carrinho */
 #lista-carrinho li {
     padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0; /* Linha divisória fina */
-    display: flex;          /* Alinha texto e botões lado a lado */
+    border-bottom: 1px solid #f0f0f0; 
+    display: flex;          
     justify-content: space-between;
-    align-items: center;    /* Centraliza verticalmente */
+    align-items: center;    
     gap: 10px;
 }
 
 /* Detalhes (Nome e Preço) na Esquerda */
 .item-detalhes {
-    flex: 1; /* Ocupa todo o espaço disponível */
+    flex: 1; 
     font-size: 0.9rem;
     color: #555;
     line-height: 1.3;
@@ -376,12 +369,12 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 .item-controles {
     display: flex;
     align-items: center;
-    gap: 8px; /* Espacinho entre o número e o X */
+    gap: 8px; 
 }
 
 /* Input de Quantidade (Pequeno e Bonito) */
 .input-qtd-carrinho {
-    width: 40px !important; /* !important garante que não fique gigante */
+    width: 40px !important; 
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -456,439 +449,22 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 /* Botão de Limpar (Secundário) */
 #limpar-carrinho {
     background-color: transparent;
-    color: #cc0066; /* Usa a cor da marca */
-    border: 2px solid #f7a399; /* Borda rosa mais suave */
+    color: #cc0066; 
+    border: 2px solid #f7a399; 
     padding: 12px;
     width: 100%;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 8px; /* Mais próximo do botão principal */
+    margin-top: 8px; 
     transition: all 0.2s;
 }
 
 #limpar-carrinho:hover {
-    background-color: #fce4ec; /* Rosa bem claro ao passar o mouse */
+    background-color: #fce4ec; 
     border-color: #cc0066;
 }
-
-/* --- Ajuste Mobile --- */
-@media (max-width: 768px) {
-    
-    /* 1. LAYOUT GERAL */
-    .container-principal, .layout-geral { flex-direction: column; }
-    #catalogo-principal { padding: 0; }
-
-    /* ==========================================
-       2. CORREÇÃO DOS TÍTULOS (Definitiva)
-       ========================================== */
-    
-    /* Estilo visual (Centralização e Margens) */
-    .cabecalho-colecao, #cabecalho-todos {
-        width: 100%;
-        margin: 15px 0 20px 0;
-        min-height: 40px;
-        align-items: center;
-        justify-content: center;
-        /* NÃO colocamos 'display: flex' aqui para não forçar a exibição */
-    }
-
-    .cabecalho-colecao h2, #cabecalho-todos h2 {
-        text-align: center; /* Garante que o texto fique no meio */
-        width: 100%;        /* Ocupa a largura total */
-        margin: 0;
-        font-size: 1.3rem;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 8px;
-        color: #cc0066;
-    }
-
-    /* --- LÓGICA DE EXIBIÇÃO (QUEM APARECE QUANDO) --- */
-
-    /* CASO 1: MODO "VER TUDO" (MISTURADO) */
-    /* Mostra o título "Todos os Brincos" */
-    #catalogo-principal.modo-misturado #cabecalho-todos {
-        display: flex !important;
-    }
-    /* Esconde os títulos das coleções individuais (Verão/Clássicos) */
-    /* (Assim os produtos aparecem misturados, mas sem aqueles títulos no meio) */
-    #catalogo-principal.modo-misturado .cabecalho-colecao {
-        display: none !important;
-    }
-
-    /* CASO 2: MODO "COLEÇÃO ESPECÍFICA" */
-    /* Esconde o título "Todos os Brincos" */
-    #catalogo-principal:not(.modo-misturado) #cabecalho-todos {
-        display: none !important;
-    }
-    /* O título da coleção (ex: Verão) aparecerá automaticamente
-       porque ele está dentro da section que ficou visível */
-       
-    /* 3. GRID DE PRODUTOS (Mantendo 4 na tela) */
-    .colecao, #catalogo-principal.modo-misturado {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px; 
-        justify-content: center;
-        padding: 0 5px 80px 5px; /* 80px embaixo pro botão do carrinho não tapar nada */
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .brinco-card {
-        flex: 0 0 48%; 
-        max-width: 48%; 
-        padding: 8px;
-        margin: 0;
-    }
-
-    .brinco-card img {
-        height: 130px; 
-        object-fit: cover;
-    }
-
-    .brinco-card h3 {
-        font-size: 0.85rem;
-        margin: 5px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .preco { font-size: 0.9rem; margin: 2px 0 8px 0; }
-
-    button.adicionar-carrinho {
-        padding: 6px;
-        font-size: 0.75rem;
-    }
-
-    /* 4. BOTÃO DO CARRINHO (BOLINHA PEQUENA) */
-    #carrinho-lateral {
-        position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        top: auto !important;
-        
-        /* Transforma em bolinha */
-        width: 60px !important;
-        height: 60px !important;
-        min-width: 0 !important;
-        border-radius: 50% !important;
-        
-        padding: 0 !important; /* Sem padding para centralizar o ícone */
-        background: #25d366;
-        color: white;
-        z-index: 2000;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
-        
-        /* OVERSCROLL JÁ ESTÁ NO ESTILO GERAL (ACIMA) */
-    }
-    
-    /* Estado FECHADO (Apenas ícone) */
-    #carrinho-lateral:not(.expandido) h2 { display: none; }
-    #carrinho-lateral:not(.expandido) .carrinho-conteudo { display: none; }
-    
-    /* Ícone da sacola usando CSS ::after */
-    #carrinho-lateral:not(.expandido)::after {
-        content: "🛍️"; 
-        font-size: 28px;
-    }
-
-    /* Estado EXPANDIDO (Abre a lista) */
-    #carrinho-lateral.expandido {
-        width: 90% !important;
-        height: auto !important;
-        max-height: 80vh;
-        bottom: 20px !important;
-        right: 5% !important;
-        border-radius: 15px !important;
-        background: white;
-        padding: 20px !important;
-        color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
-    
-    #carrinho-lateral.expandido::after { content: ""; } /* Remove o ícone gigante */
-    #carrinho-lateral.expandido h2 {
-        display: block !important;
-        position: relative;
-        text-align: left;
-        font-size: 1.2rem;
-        border-bottom: 2px solid #f7a399;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        
-        /* Reduzi o espaço de proteção na direita, pois o ícone é menor */
-        padding-right: 40px; 
-        cursor: pointer;
-    }
-    #carrinho-lateral.expandido h2::after {
-        content: ""; /* Sem texto */
-        position: absolute;
-        top: -10px; /* Fica bem no topinho */
-        left: 50%;
-        transform: translateX(-50%); /* Centraliza perfeitamente */
-        
-        width: 40px;
-        height: 5px;
-        background-color: #e0e0e0;
-        border-radius: 10px;
-    }
-    #carrinho-lateral.expandido .carrinho-conteudo { 
-        display: block; 
-        overflow-y: auto; 
-        padding-bottom: 30px; /* JÁ CORRIGIDO DA ÚLTIMA VEZ */
-    }
-    
-    /* ===================================================
-    BOTÃO VOLTAR AO TOPO
-    =================================================== */
-    #btn-topo {
-        position: fixed;
-        /* ... (outros estilos fixed) ... */
-        
-        /* ⬇️ NOVO: ESCONDE POR PADRÃO. O JS SÓ ADICIONA A CLASSE .mostrar ⬇️ */
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-        
-        /* ADICIONE ISSO para garantir que a seta não tenha display: block/flex em nenhum lugar */
-        display: none; 
-    }
-
-    /* CLASSE QUE MOSTRA (só adicionada pelo JS, se rolou mais de 300px) */
-    #btn-topo.mostrar {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        /* ⬇️ CORREÇÃO CRÍTICA: REVERTE o display: none do bloco anterior ⬇️ */
-        display: flex; /* Ou 'block' se preferir, mas 'flex' garante a centralização do conteúdo */
-    }
-
-
-    /* ⬇️ CORREÇÃO DEFINITIVA DE SOBREPOSIÇÃO NO MOBILE/DESKTOP ⬇️ */
-    /* Se a tela de produto NÃO estiver escondida, forçamos o botão a sumir. */
-    /* Usamos display: none !important para anular o .mostrar */
-    .tela-produto:not(.escondido) ~ #btn-topo {
-        display: none !important;
-    }
-}
-
-/* OUTROS */
-/* Botão "Desfazer" dentro do Toast */
-#toast button {
-    background: transparent;
-    border: 1px solid rgba(255,255,255, 0.5);
-    color: #fff;
-    padding: 5px 10px;
-    margin-left: 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: bold;
-    transition: all 0.2s;
-}
-
-#toast button:hover {
-    background-color: white;
-    color: #333;
-    border-color: white;
-}
-#toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 3000; left: 50%; top: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.5s, top 0.5s; }
-#toast.mostrar { visibility: visible; opacity: 1; top: 50px; }
-.lightbox { display: none; position: fixed; z-index: 5000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
-.lightbox-img { max-width: 90%; max-height: 90vh; object-fit: contain; }
-.fechar-btn { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-
-/* ===================================================
-   MODAL DE CHECKOUT (ESTILO PROFISSIONAL)
-   =================================================== */
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000; /* Acima de tudo */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo um pouco mais escuro */
-    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo (moderno) */
-    animation: fadeIn 0.3s;
-}
-
-.modal-conteudo {
-    background-color: #fff;
-    margin: 20px auto; /* Margem menor para caber melhor */
-    padding: 20px;     /* Padding um pouco menor */
-    border-radius: 12px;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    
-    /* --- O SEGREDO PARA NÃO CORTAR NO CELULAR --- */
-    max-height: 85vh; /* Ocupa no máximo 85% da altura da tela */
-    overflow-y: auto; /* Cria rolagem se o conteúdo for grande */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Título do Modal */
-.modal-conteudo h3 {
-    text-align: center;
-    color: #cc0066; /* Rosa da marca */
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    border-bottom: 2px solid #fce4ec;
-    padding-bottom: 15px;
-}
-
-/* Labels (Etiquetas dos campos) */
-.modal-conteudo label {
-    font-weight: bold;
-    color: #555;
-    display: block;
-    margin-bottom: 5px;
-    margin-top: 15px;
-    font-size: 0.95rem;
-}
-
-/* Campos de Texto (Inputs) */
-.modal-conteudo input {
-    width: 100%;
-    padding: 12px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-    background-color: #fafafa;
-    transition: all 0.3s;
-}
-
-/* Efeito ao clicar no campo */
-.modal-conteudo input:focus {
-    background-color: #fff;
-    border-color: #cc0066;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(204, 0, 102, 0.1);
-}
-
-/* Botão Principal (Confirmar) */
-.modal-conteudo button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 25px;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-/* Estilo específico para o botão de Enviar (o primeiro botão) */
-.modal-conteudo button:not(.fechar-modal) {
-    background-color: #25d366; /* Verde WhatsApp */
-    color: white;
-    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-}
-
-.modal-conteudo button:not(.fechar-modal):hover {
-    background-color: #128c7e;
-    transform: translateY(-2px); /* Sobe um pouquinho */
-}
-
-/* Botão Voltar (Secundário) */
-.fechar-modal {
-    background-color: transparent !important;
-    color: #888;
-    border: 1px solid #ddd !important;
-    margin-top: 10px !important;
-    font-size: 0.9rem !important;
-    padding: 10px !important;
-}
-
-.fechar-modal:hover {
-    background-color: #f4f4f4 !important;
-    color: #333;
-}
-
-/* Animação suave de entrada */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Caixa de Aviso (Amarela) - Caso você use no HTML */
-.aviso-modal {
-    background-color: #fff8e1;
-    color: #856404;
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    border-left: 4px solid #ffc107;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* ===================================================
-   NOVOS ESTILOS DO CHECKOUT (ENTREGA)
-   =================================================== */
-
-/* Container dos botões de escolha */
-.opcoes-entrega {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-/* Estilo do botão de escolha (Radio) */
-.radio-custom {
-    flex: 1;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 6px;
-    text-align: center;
-    cursor: pointer;
-    background: #fafafa;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-/* Quando passa o mouse ou seleciona */
-.radio-custom:hover { background: #fff0f5; border-color: #cc0066; }
-.radio-custom input { width: auto !important; margin: 0; }
-
-/* Caixa de Endereço da Loja */
-.box-retirada {
-    background-color: #e3f2fd; /* Azulzinho claro */
-    border: 1px solid #90caf9;
-    color: #0d47a1;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 10px;
-    text-align: center;
-}
-.box-retirada p { margin: 5px 0; font-size: 0.95rem; }
-
-/* Classe utilitária para esconder coisas */
-.escondido { display: none !important; }
 
 /* ===================================================
    BOTÃO VOLTAR AO TOPO
@@ -897,9 +473,9 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     position: fixed;
     bottom: 30px;
     right: 30px;
-    z-index: 1500; /* Acima do conteúdo, abaixo do modal/carrinho expandido */
+    z-index: 1500; 
     
-    background-color: #f7a399; /* Rosa secundário (mais suave) */
+    background-color: #f7a399; 
     color: white;
     border: none;
     border-radius: 50%;
@@ -917,8 +493,8 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 }
 
 #btn-topo:hover {
-    background-color: #cc0066; /* Rosa forte ao passar o mouse */
-    transform: translateY(-3px); /* Leve pulinho */
+    background-color: #cc0066; 
+    transform: translateY(-3px); 
 }
 
 /* Classe que o JS vai adicionar para mostrar o botão */
@@ -929,29 +505,29 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 }
 
 /* ===================================================
-   RODAPÉ (FOOTER) - NOVO BLOCO
+   RODAPÉ (FOOTER)
    =================================================== */
 
 #rodape-site {
     background-color: #fff;
     padding: 30px 20px;
     border-top: 1px solid #e0e0e0;
-    width: 100%; /* Ocupa a largura total da coluna de conteúdo */
+    width: 100%; 
     box-sizing: border-box;
-    margin-top: 50px; /* Espaço entre o último produto e o footer */
+    margin-top: 50px; 
 }
 
 .footer-container {
-    display: flex; /* ⬅️ ESTE É O PONTO CRÍTICO */
+    display: flex; 
     justify-content: space-around;
-    flex-wrap: wrap; /* Permite quebrar linha no mobile */
+    flex-wrap: wrap; 
     max-width: 1200px;
     margin: 0 auto;
     gap: 30px;
 }
 
 .footer-col {
-    flex: 1 1 250px; /* Garante que tenha no mínimo 250px e ocupe o espaço */
+    flex: 1 1 250px; 
     min-width: 250px;
     padding: 0 10px;
 }
@@ -1000,57 +576,6 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     font-size: 0.8rem;
 }
 
-/* --- Ajuste Mobile --- */
-@media (max-width: 768px) {
-    
-    /* 1. Zera o padding vertical do rodapé (mínimo necessário) */
-    #rodape-site {
-        /* Reduz o padding vertical para o mínimo e mantém uma pequena margem superior */
-        padding: 10px 10px !important; /* Espaçamento mínimo */
-        margin-top: 10px !important;   
-    }
-
-    .footer-container {
-        flex-direction: column;
-        gap: 0px !important; /* Zera o espaço entre as colunas */
-    }
-    
-    .footer-col {
-        min-width: 100%;
-        padding: 0;
-        /* Garante que não haja margem entre as colunas */
-        margin-bottom: 0px !important; 
-    }
-    
-    /* 2. Zera as margens verticais internas dos textos e títulos */
-    .footer-col h3 {
-        margin: 5px 0 !important;    /* Margem vertical mínima */
-        padding-bottom: 3px !important; /* Reduz o padding após a linha */
-        line-height: 1.2;
-    }
-
-    /* ZERA a margem vertical dos parágrafos e itens da lista */
-    .footer-col p, .footer-col ul {
-        margin: 1px 0 !important; /* Margem quase zero */
-    }
-    .footer-col ul li {
-        margin-bottom: 1px !important;
-    }
-    
-    /* Garante que os botões não criem espaço excessivo */
-    .botoes-contato {
-        margin-top: 10px !important; 
-        margin-bottom: 10px !important; 
-        gap: 5px; /* Reduz o gap entre os botões */
-    }
-
-    /* Copyright */
-    .copyright {
-        text-align: left;
-        margin-top: 10px !important; 
-    }
-}
-
 /* ===================================================
    TELA DE DETALHES DO PRODUTO (VIRTUAL PAGE)
    =================================================== */
@@ -1061,12 +586,12 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     width: 100%;
     height: 100%;
     background-color: #fff;
-    z-index: 1200; /* Acima do header, abaixo do modal/toast */
-    overflow-y: auto; /* Permite rolar a tela */
+    z-index: 1200; 
+    overflow-y: auto; 
     padding-bottom: 50px;
-    animation: slideInRight 0.3s ease-out; /* Efeito de entrada */
+    animation: slideInRight 0.3s ease-out; 
     
-    /* ⬇️ CORREÇÃO DEFINITIVA PARA ROLAGEM DUPLA ⬇️ */
+    /* CORREÇÃO DEFINITIVA PARA ROLAGEM DUPLA */
     overscroll-behavior: contain; 
 }
 
@@ -1078,7 +603,7 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 
 .cabecalho-detalhes {
     padding: 15px 20px;
-    background-color: #f7a399; /* Mesma cor do Header */
+    background-color: #f7a399; 
     position: sticky;
     top: 0;
     z-index: 10;
@@ -1146,13 +671,231 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 }
 .btn-comprar-grande:hover { transform: scale(1.02); background-color: #1ebc57; }
 
-/* MOBILE */
+
+/* --- Ajuste Mobile --- */
 @media (max-width: 768px) {
+    
+    /* 1. LAYOUT GERAL */
+    .container-principal, .layout-geral { flex-direction: column; }
+    #catalogo-principal { padding: 0; }
+
+    /* ==========================================
+       2. CORREÇÃO DOS TÍTULOS (Definitiva)
+       ========================================== */
+    
+    /* Estilo visual (Centralização e Margens) */
+    .cabecalho-colecao, #cabecalho-todos {
+        width: 100%;
+        margin: 15px 0 20px 0;
+        min-height: 40px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cabecalho-colecao h2, #cabecalho-todos h2 {
+        text-align: center; 
+        width: 100%;        
+        margin: 0;
+        font-size: 1.3rem;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 8px;
+        color: #cc0066;
+    }
+
+    /* --- LÓGICA DE EXIBIÇÃO (QUEM APARECE QUANDO) --- */
+
+    /* CASO 1: MODO "VER TUDO" (MISTURADO) */
+    #catalogo-principal.modo-misturado #cabecalho-todos {
+        display: flex !important;
+    }
+    #catalogo-principal.modo-misturado .cabecalho-colecao {
+        display: none !important;
+    }
+
+    /* CASO 2: MODO "COLEÇÃO ESPECÍFICA" */
+    #catalogo-principal:not(.modo-misturado) #cabecalho-todos {
+        display: none !important;
+    }
+       
+    /* 3. GRID DE PRODUTOS (Mantendo 4 na tela) */
+    .colecao, #catalogo-principal.modo-misturado {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px; 
+        justify-content: center;
+        padding: 0 5px 80px 5px; 
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .brinco-card {
+        flex: 0 0 48%; 
+        max-width: 48%; 
+        padding: 8px;
+        margin: 0;
+    }
+
+    .brinco-card img {
+        height: 130px; 
+        object-fit: cover;
+    }
+
+    .brinco-card h3 {
+        font-size: 0.85rem;
+        margin: 5px 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .preco { font-size: 0.9rem; margin: 2px 0 8px 0; }
+
+    button.adicionar-carrinho {
+        padding: 6px;
+        font-size: 0.75rem;
+    }
+
+    /* 4. BOTÃO DO CARRINHO (BOLINHA PEQUENA) */
+    #carrinho-lateral {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        top: auto !important;
+        
+        /* Transforma em bolinha */
+        width: 60px !important;
+        height: 60px !important;
+        min-width: 0 !important;
+        border-radius: 50% !important;
+        
+        padding: 0 !important; 
+        background: #25d366;
+        color: white;
+        z-index: 2000;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    }
+    
+    /* Estado FECHADO (Apenas ícone) */
+    #carrinho-lateral:not(.expandido) h2 { display: none; }
+    #carrinho-lateral:not(.expandido) .carrinho-conteudo { display: none; }
+    
+    /* Ícone da sacola usando CSS ::after */
+    #carrinho-lateral:not(.expandido)::after {
+        content: "🛍️"; 
+        font-size: 28px;
+    }
+
+    /* Estado EXPANDIDO (Abre a lista) */
+    #carrinho-lateral.expandido {
+        width: 90% !important;
+        height: auto !important;
+        max-height: 80vh;
+        bottom: 20px !important;
+        right: 5% !important;
+        border-radius: 15px !important;
+        background: white;
+        padding: 20px !important;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    #carrinho-lateral.expandido::after { content: ""; } 
+    #carrinho-lateral.expandido h2 {
+        display: block !important;
+        position: relative;
+        text-align: left;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #f7a399;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        
+        padding-right: 40px; 
+        cursor: pointer;
+    }
+    #carrinho-lateral.expandido h2::after {
+        content: ""; 
+        position: absolute;
+        top: -10px; 
+        left: 50%;
+        transform: translateX(-50%); 
+        
+        width: 40px;
+        height: 5px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+    }
+    #carrinho-lateral.expandido .carrinho-conteudo { 
+        display: block; 
+        overflow-y: auto; 
+        padding-bottom: 30px; 
+    }
+    
+    /* ===================================================
+       RODAPÉ (CORREÇÃO DE ESPAÇAMENTO MÓVEL AGRESSIVA)
+       =================================================== */
+    
+    /* 1. Zera o padding vertical do rodapé (mínimo necessário) */
+    #rodape-site {
+        padding: 15px 10px !important; 
+        margin-top: 15px !important;   
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 0px !important; 
+    }
+    
+    .footer-col {
+        min-width: 100%;
+        padding: 0;
+        /* Garante que não haja margem entre as colunas */
+        margin-bottom: 0px !important; 
+    }
+    
+    /* 2. Zera as margens verticais internas dos textos e títulos */
+    .footer-col h3 {
+        margin: 5px 0 !important;    
+        padding-bottom: 3px !important; 
+        line-height: 1.2;
+    }
+
+    /* ZERA a margem vertical dos parágrafos e itens da lista */
+    .footer-col p, .footer-col ul {
+        margin: 1px 0 !important; 
+    }
+    .footer-col ul li {
+        margin-bottom: 1px !important;
+    }
+    
+    /* Garante que os botões não criem espaço excessivo */
+    .botoes-contato {
+        margin-top: 10px !important; 
+        margin-bottom: 10px !important; 
+        gap: 5px; 
+    }
+
+    /* Copyright */
+    .copyright {
+        text-align: left;
+        margin-top: 10px !important; 
+    }
+    /* ⬆️ FIM DA CORREÇÃO AGRESSIVA ⬆️ */
+
+    /* MOBILE DA TELA DE DETALHES */
     .produto-container { flex-direction: column; gap: 20px; margin: 0; }
     #img-principal-detalhe { height: 300px; }
     .produto-infos h2 { font-size: 1.5rem; }
-}
+    
+} /* FIM DO MEDIA QUERY */
 
+/* ⬇️ CORREÇÃO DE INVISIBILIDADE DA SETA NA TELA DE DETALHES (DEVE FICAR FORA DO @media) ⬇️ */
 .tela-produto:not(.escondido) ~ #btn-topo {
     display: none !important;
 }
