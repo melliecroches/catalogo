@@ -49,5 +49,37 @@ const produtos = [
         imagem: "imagens/brinco-sol.jpg",
         categoria: "verao",
         cores: ["Dourado", "Prateado"]
+    },
+    {
+        id: 7,
+        nome: "Brinco Ouro Puro",
+        preco: 30.00,
+        imagem: "imagens/brinco-sol.jpg",
+        categoria: "classicos",
+        cores: ["Dourado", "Prateado"]
+    },
+    {
+        id: 8,
+        nome: "Brinco Jardim",
+        preco: 45.00,
+        imagem: "imagens/brinco-sol.jpg",
+        categoria: "classicos",
+        cores: ["Dourado", "Prateado"]
+    },
+    {
+        id: 9,
+        nome: "Brinco Coral",
+        preco: 90.00,
+        imagem: "imagens/brinco-sol.jpg",
+        categoria: "classicos",
+        cores: ["Dourado", "Prateado"]
+    },
+    {
+        id: 10,
+        nome: "Brinco Barco",
+        preco: 80.00,
+        imagem: "imagens/brinco-sol.jpg",
+        categoria: "classicos",
+        cores: ["Dourado", "Prateado"]
     }
 ];

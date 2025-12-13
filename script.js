@@ -2,7 +2,7 @@
 // CONFIGURAÇÕES DA LOJA
 // =================================================================
 const CONFIG = {
-    telefone: '5584996140526',    // Seu WhatsApp (somente números)
+    telefone: '99999999999',    // Seu WhatsApp (somente números)
     nomeLoja: 'Melliê Crochês', // Nome da Loja
     instagram: 'melliecroches'  // Seu usuário do Instagram (sem @)
 };
@@ -618,3 +618,31 @@ function atualizarLinksRodape() {
 // Adicione esta chamada dentro do evento 'DOMContentLoaded' que já existe
 // Ou apenas adicione este ouvinte solto no final do arquivo:
 document.addEventListener('DOMContentLoaded', atualizarLinksRodape);
+
+// =================================================================
+// BOTÃO VOLTAR AO TOPO (SCROLL) - VERSÃO SEGURA
+// =================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const botaoTopo = document.getElementById("btn-topo");
+
+    if (botaoTopo) {
+        // 1. Monitora a rolagem da tela
+        window.addEventListener('scroll', () => {
+            // Se rolou mais de 300px para baixo, mostra o botão
+            if (window.scrollY > 300) {
+                botaoTopo.classList.add("mostrar");
+            } else {
+                botaoTopo.classList.remove("mostrar");
+            }
+        });
+    }
+});
+
+// 2. Ação de clicar para subir (Pode ficar fora pois é chamada pelo onclick do HTML)
+function voltarAoTopo() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
