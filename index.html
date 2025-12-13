@@ -85,21 +85,57 @@
 
     </div> <div id="modal-checkout" class="modal">
         <div class="modal-conteudo">
-            <h3>Preencha seus Dados</h3>
+            <h3>Finalizar Pedido</h3>
+
             <div class="aviso-modal" style="flex-direction: column; align-items: flex-start; gap: 5px;">
                 <div style="display: flex; gap: 10px; align-items: center;">
                     <span>⚠️</span>
-                    <span><strong>Atenção:</strong> Você será direcionado para o WhatsApp para finalizarmos o pedido e acertarmos o frete e pagamento.</span>
+                    <span><strong>Atenção:</strong> Você será direcionado para o WhatsApp para finalizarmos o pedido e acertarmos o pagamento.</span>
                 </div>
                 <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px; color: #d63384;">
                     <span>⏳</span>
                     <span style="font-size: 0.9em;">Lembrete: Prazo de produção de até 10 dias úteis.</span>
                 </div>
             </div>
-            <label>Nome:</label> <input type="text" id="nome-cliente" required>
-            <label>Endereço:</label> <input type="text" id="endereco-cliente" required>
-            <label>WhatsApp:</label> <input type="tel" id="whatsapp-cliente" required>
-            <button onclick="enviarPedidoWhatsapp()">Confirmar e Enviar</button>
+
+            <label>Seus Dados:</label>
+            <input type="text" id="nome-cliente" placeholder="Seu Nome Completo" required>
+            <input type="tel" id="whatsapp-cliente" placeholder="Seu WhatsApp (com DDD)" required>
+
+            <label style="margin-top: 15px;">Como deseja receber?</label>
+            <div class="opcoes-entrega">
+                <label class="radio-custom">
+                    <input type="radio" name="tipo_entrega" value="uber" checked onchange="alternarEntrega()">
+                    🚗 Entrega (Uber Flash)
+                </label>
+                <label class="radio-custom">
+                    <input type="radio" name="tipo_entrega" value="retirada" onchange="alternarEntrega()">
+                    🛍️ Retirada no Local
+                </label>
+            </div>
+
+            <div id="campos-endereco-uber">
+                <label>Endereço de Entrega:</label>
+                <input type="text" id="end-rua" placeholder="Nome da Rua" style="margin-bottom: 8px;">
+                
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="end-numero" placeholder="Número" style="width: 30%;">
+                    <input type="text" id="end-bairro" placeholder="Bairro" style="width: 70%;">
+                </div>
+                
+                <input type="text" id="end-cidade" placeholder="Cidade" style="margin-top: 8px;">
+                <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">*O valor do frete será calculado e informado no WhatsApp.</p>
+            </div>
+
+            <div id="info-retirada" class="escondido">
+                <div class="box-retirada">
+                    <p><strong>📍 Local de Retirada:</strong></p>
+                    <p>Rua Exemplo da Sua Loja, 123<br>Bairro Centro - Sua Cidade</p>
+                    <p><em>(Horário a combinar após a confirmação)</em></p>
+                </div>
+            </div>
+
+            <button onclick="enviarPedidoWhatsapp()">Confirmar e Enviar Pedido</button>
             <button class="fechar-modal" onclick="fecharModalCheckout()">Voltar</button>
         </div>
     </div>

@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function abrirModalCheckout() {
     if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio! Adicione pelo menos um brinco.");
+        mostrarToast("Seu carrinho está vazio!");
         return;
     }
     document.getElementById('modal-checkout').style.display = 'block';
@@ -225,47 +225,86 @@ function fecharModalCheckout() {
     document.getElementById('modal-checkout').style.display = 'none';
 }
 
+// Função que troca os campos (Uber vs Retirada)
+function alternarEntrega() {
+    const tipo = document.querySelector('input[name="tipo_entrega"]:checked').value;
+    const divUber = document.getElementById('campos-endereco-uber');
+    const divRetirada = document.getElementById('info-retirada');
+
+    if (tipo === 'uber') {
+        divUber.classList.remove('escondido');
+        divRetirada.classList.add('escondido');
+    } else {
+        divUber.classList.add('escondido');
+        divRetirada.classList.remove('escondido');
+    }
+}
+
 function enviarPedidoWhatsapp() {
+    // 1. Pega os dados básicos
     const nome = document.getElementById('nome-cliente').value;
-    const endereco = document.getElementById('endereco-cliente').value;
     const telefone = document.getElementById('whatsapp-cliente').value;
+    const tipoEntrega = document.querySelector('input[name="tipo_entrega"]:checked').value;
     
-    if (!nome || !endereco || !telefone) {
-        alert("Por favor, preencha todos os dados de contato!");
+    // Validação básica
+    if (!nome || !telefone) {
+        alert("Por favor, preencha seu Nome e WhatsApp.");
         return;
     }
 
-    let resumoProdutos = ">>> ITENS DO PEDIDO:\n";
+    // 2. Monta o texto do Endereço baseado na escolha
+    let textoEndereco = "";
+    
+    if (tipoEntrega === 'uber') {
+        const rua = document.getElementById('end-rua').value;
+        const numero = document.getElementById('end-numero').value;
+        const bairro = document.getElementById('end-bairro').value;
+        const cidade = document.getElementById('end-cidade').value;
+
+        if (!rua || !numero || !bairro) {
+            alert("Para entrega, precisamos do endereço completo (Rua, Número e Bairro).");
+            return;
+        }
+        textoEndereco = `📍 *ENTREGA (Uber Flash)*\nEndereço: ${rua}, ${numero} - ${bairro}, ${cidade}`;
+    
+    } else {
+        textoEndereco = `🛍️ *RETIRADA NO LOCAL*\n(Cliente irá buscar)`;
+    }
+
+    // 3. Monta a lista de produtos
+    let resumoProdutos = "";
     let valorTotal = 0;
     
     carrinho.forEach(item => {
-        // Formato para o WhatsApp: Quantidade x Nome (Cor) - Preço Total
-        resumoProdutos += 
-            `- ${item.quantidade}x ${item.nome} (${item.cor}) - R$ ${item.precoTotalItem.toFixed(2)}\n`;
+        resumoProdutos += `- ${item.quantidade}x ${item.nome} (${item.cor}) - R$ ${item.precoTotalItem.toFixed(2)}\n`;
         valorTotal += item.precoTotalItem;
     });
     
+    // 4. Cria a mensagem final bonitona
     let mensagemCompleta = 
-        `*NOVO PEDIDO - CATÁLOGO VIRTUAL*\n\n` + 
-        `*CLIENTE:*\n` + 
-        `Nome: ${nome}\n` + 
-        `Endereço: ${endereco}\n` + 
-        `Tel: ${telefone}\n\n` + 
+        `*NOVO PEDIDO - SITE*\n\n` + 
+        `👤 *Cliente:* ${nome}\n` + 
+        `📱 *WhatsApp:* ${telefone}\n\n` + 
+        `--------------------------------\n` +
+        `*🛒 ITENS DO PEDIDO:*\n` + 
         resumoProdutos + 
-        `\n*VALOR ESTIMADO TOTAL (sem frete): R$ ${valorTotal.toFixed(2)}*` +
-        `\n\n_Aguardo seu retorno para acertar o frete e forma de pagamento._`;
+        `\n💰 *TOTAL PRODUTOS: R$ ${valorTotal.toFixed(2)}*\n` +
+        `--------------------------------\n\n` +
+        `${textoEndereco}\n\n` +
+        `_Aguardo confirmação para pagamento._`;
 
+    // 5. Envia
     const mensagemCodificada = encodeURIComponent(mensagemCompleta);
-    const SEU_NUMERO_WHATSAPP = '555555'; // ⚠️ RECONFIRME SEU NÚMERO AQUI
+    const SEU_NUMERO_WHATSAPP = '55555'; // <--- MUDE SEU NÚMERO AQUI
     const linkWhatsapp = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${mensagemCodificada}`;
     
     window.open(linkWhatsapp, '_blank');
     fecharModalCheckout();
     
-    // Limpar o carrinho e campos após o envio
+    // Limpa tudo
     carrinho = [];
+    localStorage.setItem('carrinho_compras', JSON.stringify(carrinho)); // Limpa memória
     document.getElementById('nome-cliente').value = '';
-    document.getElementById('endereco-cliente').value = '';
     document.getElementById('whatsapp-cliente').value = '';
     atualizarCarrinhoHTML();
 }
