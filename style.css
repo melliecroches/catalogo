@@ -841,57 +841,44 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
        RODAPÉ (COMPACTAÇÃO EXTREMA E BLOCOS VERTICAIS)
        =================================================== */
     
-    /* Footer bem compacto no mobile */
+    /* 1. Zera a maioria dos espaçamentos do footer container */
     #rodape-site {
-        padding: 10px !important;
-        margin-top: 10px !important;
+        padding: 12px;
+        margin-top: 12px;
+        background: #fff;
     }
 
     .footer-container {
-        display: flex;
-        flex-direction: row;
-        gap: 20px !important;
+        display: block;
     }
 
     .footer-col {
-        padding: 8px 0 !important;
-        margin: 0 !important;
-        border-bottom: 1px solid #eee;
+        margin-bottom: 12px;
     }
 
-    /* Última seção sem linha */
     .footer-col:last-child {
-        border-bottom: none;
+        margin-bottom: 0;
     }
 
-    /* Títulos */
     .footer-col h3 {
-        margin: 0 0 5px 0 !important;
-        padding: 0 !important;
+        margin-bottom: 6px;
         font-size: 1rem;
     }
 
-    /* Textos e listas */
     .footer-col p,
-    .footer-col ul,
     .footer-col li {
-        margin: 0 !important;
-        padding: 0 !important;
+        font-size: 0.9rem;
         line-height: 1.4;
     }
 
-    .footer-col ul li {
-        margin-bottom: 4px !important;
-    }
-
-    /* Botões de contato mais colados */
     .botoes-contato {
-        margin-top: 8px !important;
-        gap: 6px !important;
+        margin-top: 8px;
     }
 
     .copyright {
-        margin-top: 10px !important;
+        margin-top: 10px;
+        font-size: 0.75rem;
+        text-align: center;
     }
     /* ⬆️ FIM DA CORREÇÃO AGRESSIVA DO RODAPÉ ⬆️ */
     
