@@ -671,6 +671,11 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
         border-radius: 10px;
     }
     #carrinho-lateral.expandido .carrinho-conteudo { display: block; overflow-y: auto; }
+    
+    #carrinho-lateral.expandido .carrinho-conteudo { 
+        display: block; 
+        overflow-y: auto; 
+    }
 
     #btn-topo {
         right: auto; /* Tira da direita */
