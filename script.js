@@ -103,50 +103,19 @@ function renderizarCatalogo() {
         const secaoDestino = document.getElementById(produto.categoria);
         
         if (secaoDestino) {
-            let controlesCorHTML = '';
-
-            // 1. Lógica para produtos com MÚLTIPLAS CORES (o novo Brinco Lua Flor)
-            if (produto.camposCor && produto.camposCor.length > 0) {
-                // Para cada campo de cor (miolo, pétalas, etc.)
-                produto.camposCor.forEach(campo => {
-                    // Gera as opções usando a paleta definida no produto (campo.paleta)
-                    const opcoesHTML = gerarOpcoesCores(campo.paleta, campo.label);
-                    
-                    controlesCorHTML += `
-                        <label for="${campo.id}-${produto.id}">${campo.label}:</label>
-                        <select id="${campo.id}-${produto.id}" class="select-cor-multipla">
-                            ${opcoesHTML}
-                        </select>
-                    `;
-                });
-
-            } else {
-                // 2. Lógica para produtos de COR ÚNICA (o Brinco Estrela, que usa a cor da Coleção)
-                // Usa o ID da coleção como paleta para a função gerarOpcoesCores
-                const opcoesHTML = gerarOpcoesCores(produto.categoria, 'Escolha a Cor'); 
-
-                controlesCorHTML = `
-                    <label for="cor-unica-${produto.id}">Escolha a Cor:</label>
-                    <select id="cor-unica-${produto.id}" class="select-cor-unica">
-                        ${opcoesHTML}
-                    </select>
-                `;
-            }
+            // O código 'controlesCorHTML' é totalmente descartado aqui
             
-            // O restante do card HTML é o mesmo, mas usando a variável 'controlesCorHTML'
+            // O restante do card HTML é alterado para ser mais simples
             const cardHTML = `
                 <div class="brinco-card" data-id="${produto.id}">
-                    <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
+                    <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy" onclick="abrirProduto(${produto.id})">
                     <div class="card-detalhes">
                         <h3 onclick="abrirProduto(${produto.id})" style="cursor: pointer; text-decoration: underline;">
                             ${produto.nome}
                         </h3>
                         <p class="preco">${formatarMoeda(produto.preco)}</p>
                         
-                        ${controlesCorHTML} <label>Quantidade:</label>
-                        <input type="number" class="input-quantidade" value="1" min="1">
-
-                        <button class="adicionar-carrinho" data-id="${produto.id}" data-preco="${produto.preco}">
+                        <button class="adicionar-carrinho" onclick="abrirProduto(${produto.id})">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -926,4 +895,7 @@ function adicionarAoCarrinhoPelaTelaDetalhes(produto) {
     atualizarCarrinhoHTML();
     
     mostrarToast(`${produto.nome} adicionado!`);
+    
+    // ⬇️ NOVO COMPORTAMENTO: FECHAR A TELA APÓS ADICIONAR
+    fecharTelaProduto(); // <--- Esta função já está definida (Linha 779)
 }

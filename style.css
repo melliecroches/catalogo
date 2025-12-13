@@ -550,12 +550,12 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     }
 
     .preco { font-size: 0.9rem; margin: 2px 0 8px 0; }
-    
-    .card-detalhes select, .card-detalhes input {
-        padding: 2px;
-        font-size: 0.8rem;
-        height: 25px;
-        margin-bottom: 5px;
+
+    /* ⬇️ Adicione estas regras para limpar o card principal no mobile/desktop ⬇️ */
+    .card-detalhes label, 
+    .card-detalhes select, 
+    .card-detalhes input.input-quantidade {
+        display: none !important; /* Esconde todos os controles que foram removidos do card principal */
     }
 
     button.adicionar-carrinho {
