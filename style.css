@@ -116,6 +116,64 @@ header {
 /* ===================================================
    CATÁLOGO E PRODUTOS
    =================================================== */
+
+/* O Container do Título + Bolinhas */
+.cabecalho-colecao {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* FORÇA UM FICAR EM BAIXO DO OUTRO */
+    align-items: center;    /* Centraliza tudo horizontalmente */
+    justify-content: center;
+    margin-bottom: 30px;    /* Espaço entre esse bloco e os produtos */
+    position: relative;
+}
+
+/* O Título da Coleção */
+.cabecalho-colecao h2 {
+    color: #cc0066;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 0 10px 0; /* Margem de 10px em baixo para as bolinhas não colarem no texto */
+    padding-bottom: 0;
+    border: none;       /* Removemos a borda do H2 para desenhar uma linha mais bonita abaixo de tudo */
+    width: auto;        /* Ocupa só o tamanho do texto */
+}
+
+/* O Container das Bolinhas */
+.paleta-colecao {
+    display: flex;
+    justify-content: center;
+    gap: 10px;          /* Espaço entre as bolinhas */
+    margin-bottom: 15px; /* Espaço até a linha divisória */
+}
+
+/* A Bolinha em si */
+.cor-bolinha {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.cor-bolinha:hover { transform: scale(1.2); }
+
+/* Linha decorativa abaixo do título/bolinhas */
+.cabecalho-colecao::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #f7a399;
+    border-radius: 2px;
+    margin-top: 5px;
+    
+    /* ADICIONE ISSO: Garante que centralize mesmo se não for flex */
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #catalogo-principal {
     padding: 20px;
     width: 100%;
@@ -130,30 +188,27 @@ header {
     justify-content: center;
 }
 
-.cabecalho-colecao {
-    width: 100%;           /* Ocupa a linha inteira */
-    flex-basis: 100%;      /* Garante que empurre os produtos para baixo */
-    display: flex;         
-    justify-content: center; /* Centraliza o texto na tela */
-    margin-bottom: 10px;
-}
-
-.cabecalho-colecao h2, #cabecalho-todos h2 {
-    color: #cc0066;
-    font-size: 1.8rem;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-/* --- CORREÇÃO DO MODO "VER TUDO" (MISTURADO) --- */
+/* Procure esta regra e altere APENAS o justify-content */
 #catalogo-principal.modo-misturado {
-    display: flex;      /* Transforma o container em Flex */
-    flex-wrap: wrap;    /* Permite quebrar linha (lado a lado) */
-    gap: 20px;          /* Espaço entre os cards */
-    justify-content: center;
+    display: flex;      
+    flex-wrap: wrap;    
+    gap: 20px;          
+    
+    /* MUDAR DE 'center' PARA 'flex-start' */
+    /* Isso joga os cards para a esquerda, formando um grid perfeito */
+    justify-content: flex-start; 
+}
+
+/* Garante que o título ocupe a largura total e quebre a linha */
+#catalogo-principal.modo-misturado #cabecalho-todos {
+    display: flex !important;
+    flex-direction: column !important; /* Mantém o tracinho certo */
+    align-items: center !important;    /* Centraliza o texto */
+    order: -1;
+    
+    width: 100%;        /* Ocupa tudo */
+    flex-basis: 100%;   /* Força a quebra de linha para os cards irem pra baixo */
+    margin-bottom: 30px;
 }
 
 /* Remove a estrutura das seções para os cards ficarem soltos */
@@ -162,7 +217,6 @@ header {
 
 /* Título "Todos os Brincos" */
 #cabecalho-todos { display: none; width: 100%; text-align: center; }
-#catalogo-principal.modo-misturado #cabecalho-todos { display: block !important; order: -1; width: 100%; }
 
 /* ===================================================
    CARDS

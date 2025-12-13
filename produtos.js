@@ -9,6 +9,12 @@ const NOMES_CATEGORIAS = {
     'prata': '💎 Prata 925'            // Exemplo futuro
 };
 
+const CORES_COLECAO = {
+    'verao': ['#FFD700', '#FF8C00', '#40E0D0', '#FF69B4'], // Dourado, Laranja, Turquesa, Rosa
+    'classicos': ['#000000', '#C0C0C0', '#F5F5F5'],        // Preto, Prata, Branco Off-white
+    // Adicione outras aqui se criar novas coleções
+};
+
 const produtos = [
     {
         id: 1,

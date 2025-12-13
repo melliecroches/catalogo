@@ -46,21 +46,30 @@ function inicializarLoja() {
             menuContainer.appendChild(btn);
         }
 
-        // --- B. CRIA A SEÇÃO NO HTML ---
-        // Cria <section id="verao" class="colecao"> ... </section>
+        // --- B. CRIA A SEÇÃO NO HTML (ATUALIZADO COM CORES) ---
         if (!document.getElementById(catId)) {
             const section = document.createElement('section');
             section.id = catId;
             section.className = 'colecao';
 
-            // Pega o nome bonito com emoji ou usa o ID capitalizado
             const tituloBonito = NOMES_CATEGORIAS[catId] || (catId.charAt(0).toUpperCase() + catId.slice(1));
+            
+            // 1. Verifica se essa coleção tem cores definidas
+            let htmlCores = '';
+            if (CORES_COLECAO[catId]) {
+                const bolinhas = CORES_COLECAO[catId].map(cor => 
+                    `<span class="cor-bolinha" style="background-color: ${cor};" title="${cor}"></span>`
+                ).join('');
+                
+                htmlCores = `<div class="paleta-colecao">${bolinhas}</div>`;
+            }
 
+            // 2. Injeta o HTML (Título + Cores)
             section.innerHTML = `
                 <div class="cabecalho-colecao">
                     <h2>${tituloBonito}</h2>
-                </div>
-                `;
+                    ${htmlCores} </div>
+            `;
             
             mainContainer.appendChild(section);
         }
