@@ -524,7 +524,31 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     }
     
     #carrinho-lateral.expandido::after { content: ""; } /* Remove o ícone gigante */
-    #carrinho-lateral.expandido h2 { display: block; font-size: 1.2rem; border-bottom: 1px solid #eee; margin-bottom: 10px; }
+    #carrinho-lateral.expandido h2 {
+        display: block !important;
+        position: relative;
+        text-align: left;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #f7a399;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        
+        /* Reduzi o espaço de proteção na direita, pois o ícone é menor */
+        padding-right: 40px; 
+        cursor: pointer;
+    }
+    #carrinho-lateral.expandido h2::after {
+        content: ""; /* Sem texto */
+        position: absolute;
+        top: -10px; /* Fica bem no topinho */
+        left: 50%;
+        transform: translateX(-50%); /* Centraliza perfeitamente */
+        
+        width: 40px;
+        height: 5px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+    }
     #carrinho-lateral.expandido .carrinho-conteudo { display: block; overflow-y: auto; }
 }
 
