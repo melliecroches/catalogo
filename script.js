@@ -419,3 +419,50 @@ function mostrarToast(mensagem) {
         toast.className = toast.className.replace("mostrar", ""); 
     }, 3000);
 }
+
+// =================================================================
+// FUNCIONALIDADE: BUSCA POR TEXTO (SEARCH)
+// =================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const campoBusca = document.getElementById('campo-busca');
+    const msgSemResultados = document.getElementById('mensagem-sem-resultados');
+
+    campoBusca.addEventListener('input', function() {
+        const termo = this.value.toLowerCase().trim(); // Texto digitado (minúsculo)
+        const todosCards = document.querySelectorAll('.brinco-card');
+        let encontrouAlgum = false;
+
+        // 1. Se começou a digitar, força o modo "Ver Tudo"
+        // para procurar no site inteiro, não só na aba atual
+        if (termo.length > 0) {
+            filtrarColecao('todos');
+            // Esconde o título "Todos os Brincos" para focar na busca
+            const tituloTodos = document.getElementById('cabecalho-todos');
+            if(tituloTodos) tituloTodos.classList.add('escondido');
+        } else {
+            // Se limpou a busca, mostra o título de volta
+            const tituloTodos = document.getElementById('cabecalho-todos');
+            if(tituloTodos) tituloTodos.classList.remove('escondido');
+        }
+
+        // 2. Passa por cada produto e decide se mostra ou esconde
+        todosCards.forEach(card => {
+            const nomeProduto = card.querySelector('h3').innerText.toLowerCase();
+            
+            if (nomeProduto.includes(termo)) {
+                card.style.display = ''; // Volta ao padrão do CSS (flex)
+                encontrouAlgum = true;
+            } else {
+                card.style.display = 'none'; // Esconde
+            }
+        });
+
+        // 3. Mostra mensagem se não achou nada
+        if (!encontrouAlgum && termo.length > 0) {
+            msgSemResultados.classList.remove('escondido');
+        } else {
+            msgSemResultados.classList.add('escondido');
+        }
+    });
+});

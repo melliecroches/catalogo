@@ -12,11 +12,14 @@
 
     <header>
         <h1>💎 Seu Catálogo de Brincos</h1>
+        
         <nav class="menu-navegacao">
             <button class="btn-menu ativo" onclick="filtrarColecao('todos')">Ver Tudo</button>
             <button class="btn-menu" onclick="filtrarColecao('verao')">Verão 2024</button>
             <button class="btn-menu" onclick="filtrarColecao('classicos')">Clássicos</button>
         </nav>
+
+        <input type="text" id="campo-busca" class="barra-busca" placeholder="🔍 Buscar por nome (ex: Pérola)...">
     </header>
 
     <div class="container-principal">
@@ -24,6 +27,10 @@
         <div class="coluna-conteudo">
             
             <main id="catalogo-principal">
+                <div id="mensagem-sem-resultados" class="escondido" style="text-align: center; width: 100%; padding: 20px; color: #666;">
+                    😕 Poxa, não encontramos nenhum brinco com esse nome.
+                </div>
+
                 <div id="cabecalho-todos" class="cabecalho-colecao">
                     <h2>💎 Todos os Brincos</h2>
                 </div>
@@ -62,8 +69,12 @@
                     <div class="footer-col">
                         <h3>📱 Fale Conosco</h3>
                         <div class="botoes-contato">
-                            <a href="#" class="btn-social instagram">📸 Instagram</a>
-                            <a href="#" class="btn-social whatsapp">💬 WhatsApp</a>
+                            <a href="https://instagram.com/melliecroches" target="_blank" class="btn-social instagram">
+                                📸 Siga no Instagram
+                            </a>
+                            <a href="https://wa.me/55999999999" target="_blank" class="btn-social whatsapp">
+                                💬 Chamar no WhatsApp
+                            </a>
                         </div>
                         <p class="copyright">© 2024 Sua Loja.</p>
                     </div>

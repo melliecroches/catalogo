@@ -5,7 +5,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     background-color: #f4f4f4;
-    padding-top: 170px; /* Espaço para o cabeçalho fixo */
+    
+    /* Mude de 210px para 190px */
+    padding-top: 190px; 
+    
     min-height: 100vh;
 }
 
@@ -78,6 +81,33 @@ header h1 { margin: 0; font-size: 1.5rem; }
     background-color: white;
     color: #cc0066;
     font-weight: bold;
+}
+
+/* ===================================================
+   BARRA DE BUSCA
+   =================================================== */
+.barra-busca {
+    width: 90%;
+    max-width: 400px; /* Não deixa ficar gigante no PC */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px; /* Bem redondinha */
+    margin-top: 15px;
+    font-size: 1rem;
+    outline: none; /* Remove a borda azul padrão */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave */
+    transition: transform 0.2s;
+}
+
+/* Efeito ao clicar para digitar */
+.barra-busca:focus {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Ajuste na altura do header para caber a busca */
+header {
+    padding-bottom: 20px; /* Mais espaço embaixo */
 }
 
 /* ===================================================
@@ -177,15 +207,18 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 #carrinho-lateral {
     width: 320px;
     min-width: 320px;
-    background-color: #fff; /* Fundo branco limpo */
+    background-color: #fff;
     border-left: 1px solid #e0e0e0;
     padding: 20px;
     box-sizing: border-box;
-    box-shadow: -2px 0 15px rgba(0,0,0,0.05); /* Sombra suave na esquerda */
+    box-shadow: -2px 0 15px rgba(0,0,0,0.05);
     
     position: sticky;
-    top: 170px; 
-    height: calc(100vh - 170px);
+    
+    /* AQUI A CORREÇÃO: */
+    top: 190px; 
+    height: calc(100vh - 190px);
+    
     overflow-y: auto;
     flex-shrink: 0;
     z-index: 900;
