@@ -995,3 +995,14 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     #img-principal-detalhe { height: 300px; }
     .produto-infos h2 { font-size: 1.5rem; }
 }
+
+/* ===================================================
+   CORREÇÃO VISUAL PARA TELA DE DETALHES
+   =================================================== */
+
+/* Garante que o container das bolinhas não ocupe 100% da largura
+   quando está ao lado de outro elemento (a etiqueta da categoria) */
+#tela-produto .paleta-colecao {
+    width: auto;
+    flex-wrap: nowrap; /* Impede quebra de linha das bolinhas */
+}

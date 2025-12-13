@@ -100,7 +100,11 @@
             </div>
 
             <div class="produto-infos">
-                <span id="detalhe-categoria" class="tag-categoria">Coleção Verão</span>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <span id="detalhe-categoria" class="tag-categoria">Coleção Verão</span> 
+                    
+                    <div id="detalhe-paleta" class="paleta-colecao" style="margin: 0; padding: 0; gap: 5px;"></div>
+                </div>
                 <h2 id="detalhe-nome">Nome do Brinco</h2>
                 <p id="detalhe-preco" class="preco-grande">R$ 00,00</p>
                 
@@ -113,11 +117,15 @@
                 </div>
 
                 <div class="area-compra-detalhe">
-                    <label>Escolha a Cor:</label>
-                    <select id="detalhe-cor"></select>
-
-                    <label>Quantidade:</label>
-                    <input type="number" id="detalhe-qtd" value="1" min="1" class="input-quantidade">
+                    <div style="margin-bottom: 15px;">
+                        <label for="detalhe-cor">Escolha a Cor:</label>
+                        <select id="detalhe-cor" style="width: 100%;"></select>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label for="detalhe-qtd">Quantidade:</label>
+                        <input type="number" id="detalhe-qtd" value="1" min="1" class="input-quantidade" style="width: 100%;">
+                    </div>
 
                     <button id="btn-add-detalhe" class="btn-comprar-grande">
                         Adicionar ao Carrinho

@@ -121,7 +121,7 @@ function renderizarCatalogo() {
                             ${opcoesCoresHTML}
                         </select>
 
-                        <label>Qtd:</label>
+                        <label>Quantidade:</label>
                         <input type="number" class="input-quantidade" value="1" min="1">
 
                         <button class="adicionar-carrinho" data-nome="${produto.nome}" data-preco="${produto.preco}">
@@ -724,60 +724,69 @@ function voltarAoTopo() {
 // =================================================================
 
 function abrirProduto(idProduto) {
-    // 1. Acha o produto na lista (garante que id seja número)
     const produto = produtos.find(p => p.id === idProduto);
     if (!produto) return;
 
-    // 2. Preenche as informações básicas
+    // 1. Preenche textos básicos
     document.getElementById('detalhe-nome').innerText = produto.nome;
     document.getElementById('detalhe-preco').innerText = formatarMoeda(produto.preco);
     document.getElementById('detalhe-descricao').innerText = produto.descricao || "Sem descrição.";
     document.getElementById('detalhe-tamanho').innerText = produto.tamanho || "Único";
-    
-    // Usa o mapa de nomes bonitos que criamos antes, ou usa o ID mesmo
-    const nomeCategoria = NOMES_CATEGORIAS[produto.categoria] || produto.categoria;
-    document.getElementById('detalhe-categoria').innerText = nomeCategoria;
+    document.getElementById('detalhe-categoria').innerText = NOMES_CATEGORIAS[produto.categoria] || produto.categoria;
 
-    // 3. Preenche as Cores (Select)
+    // 2. Preenche o Menu de Cores (Select)
     const selectCor = document.getElementById('detalhe-cor');
     selectCor.innerHTML = gerarOpcoesCores(produto.categoria);
 
-    // 4. Monta a Galeria de Imagens
+    // =========================================================
+    // 3. PARTE NOVA: DESENHA AS BOLINHAS
+    // =========================================================
+    const divPaleta = document.getElementById('detalhe-paleta');
+    const listaCores = CORES_COLECAO[produto.categoria];
+
+    if (listaCores && listaCores.length > 0) {
+        // Cria as bolinhas numeradas
+        divPaleta.innerHTML = listaCores.map((corObj, index) => `
+            <span class="cor-bolinha-numerada" 
+                  style="background-color: ${corObj.hex};" 
+                  title="${corObj.nome}">
+                ${index + 1}
+            </span>
+        `).join('');
+        
+        divPaleta.style.display = 'flex'; // Mostra a div (que está dentro do flex principal)
+    } else {
+        divPaleta.innerHTML = '';
+        divPaleta.style.display = 'none'; // Esconde se não tiver cor
+    }
+    // =========================================================
+
+    // 4. Imagens
     const imgPrincipal = document.getElementById('img-principal-detalhe');
     const divMiniaturas = document.getElementById('lista-miniaturas');
-    
-    // Define a imagem principal inicial
     imgPrincipal.src = produto.imagem;
 
-    // Cria lista de todas as fotos (Principal + Extras)
     let todasFotos = [produto.imagem];
-    if (produto.fotosExtras && produto.fotosExtras.length > 0) {
-        todasFotos = todasFotos.concat(produto.fotosExtras);
-    }
+    if (produto.fotosExtras) todasFotos = todasFotos.concat(produto.fotosExtras);
 
-    // Gera o HTML das miniaturas
     divMiniaturas.innerHTML = todasFotos.map(fotoSrc => `
         <img src="${fotoSrc}" onclick="trocarFotoDetalhe(this.src)" class="${fotoSrc === produto.imagem ? 'ativa' : ''}">
     `).join('');
 
-    // 5. Configura o Botão de Comprar desta tela
+    // 5. Arruma o botão de Comprar (remove bugs antigos de clique duplo)
     const btnComprar = document.getElementById('btn-add-detalhe');
-    
-    // Remove eventos antigos (cloneNode truque) para não duplicar cliques
     const novoBtn = btnComprar.cloneNode(true);
     btnComprar.parentNode.replaceChild(novoBtn, btnComprar);
     
-    // Adiciona o novo evento de compra
     novoBtn.addEventListener('click', () => {
-        const corEscolhida = document.getElementById('detalhe-cor').value;
-        const qtdEscolhida = parseInt(document.getElementById('detalhe-qtd').value) || 1;
-        
-        adicionarAoCarrinhoPelaTelaDetalhes(produto, corEscolhida, qtdEscolhida);
+        const cor = document.getElementById('detalhe-cor').value;
+        const qtd = parseInt(document.getElementById('detalhe-qtd').value) || 1;
+        adicionarAoCarrinhoPelaTelaDetalhes(produto, cor, qtd);
     });
 
-    // 6. Mostra a Tela
+    // 6. Abre a tela
     document.getElementById('tela-produto').classList.remove('escondido');
-    document.body.style.overflow = 'hidden'; // Trava a rolagem da loja no fundo
+    document.body.style.overflow = 'hidden'; 
 }
 
 function fecharTelaProduto() {
