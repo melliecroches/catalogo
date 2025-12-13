@@ -929,6 +929,128 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 }
 
 /* ===================================================
+   RODAPÉ (FOOTER) - NOVO BLOCO
+   =================================================== */
+
+#rodape-site {
+    background-color: #fff;
+    padding: 30px 20px;
+    border-top: 1px solid #e0e0e0;
+    width: 100%; /* Ocupa a largura total da coluna de conteúdo */
+    box-sizing: border-box;
+    margin-top: 50px; /* Espaço entre o último produto e o footer */
+}
+
+.footer-container {
+    display: flex; /* ⬅️ ESTE É O PONTO CRÍTICO */
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite quebrar linha no mobile */
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.footer-col {
+    flex: 1 1 250px; /* Garante que tenha no mínimo 250px e ocupe o espaço */
+    min-width: 250px;
+    padding: 0 10px;
+}
+
+.footer-col h3 {
+    color: #cc0066;
+    border-bottom: 2px solid #f7a399;
+    padding-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.footer-col p, .footer-col ul {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.footer-col ul { list-style-type: none; padding-left: 0; }
+.footer-col ul li { margin-bottom: 5px; }
+
+.aviso-destaque { font-weight: bold; color: #d63384; }
+
+.botoes-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-social {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.2s;
+}
+.instagram { background-color: #E1306C; color: white; }
+.whatsapp { background-color: #25D366; color: white; }
+.instagram:hover { background-color: #C135A2; }
+.whatsapp:hover { background-color: #128C7E; }
+
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.8rem;
+}
+
+/* --- Ajuste Mobile --- */
+@media (max-width: 768px) {
+    
+    /* ⬇️ CORREÇÃO DE ESPAÇAMENTO DO RODAPÉ (VERSÃO FINAL) ⬇️ */
+    
+    /* 1. Zera o padding vertical do rodapé (mínimo necessário) */
+    #rodape-site {
+        padding: 15px 10px; /* Reduz o padding em todos os lados */
+        margin-top: 15px;   /* Reduz a margem do topo */
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 0px !important; /* Força zero espaço entre as colunas */
+    }
+    
+    .footer-col {
+        min-width: 100%;
+        padding: 0;
+        /* Zera a margem inferior para que as colunas fiquem coladas */
+        margin-bottom: 0px !important; 
+    }
+    
+    /* 2. Zera as margens verticais internas dos textos */
+    .footer-col h3 {
+        margin-top: 5px !important;    /* Margem mínima no topo do título */
+        margin-bottom: 5px !important; 
+        padding-bottom: 5px; 
+    }
+
+    /* ZERA a margem vertical dos parágrafos e itens da lista */
+    .footer-col p, .footer-col ul {
+        margin: 1px 0 !important; /* Margem quase zero */
+    }
+    .footer-col ul li {
+        margin-bottom: 1px !important;
+    }
+    
+    /* Garante que os botões não criem espaço excessivo */
+    .botoes-contato {
+        margin-top: 10px !important; 
+        margin-bottom: 10px !important; 
+    }
+
+    .copyright {
+        text-align: left;
+        margin-top: 10px !important; /* Zera a distância do copyright */
+    }
+}
+
+/* ===================================================
    TELA DE DETALHES DO PRODUTO (VIRTUAL PAGE)
    =================================================== */
 .tela-produto {
