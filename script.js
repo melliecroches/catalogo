@@ -800,5 +800,4 @@ function adicionarAoCarrinhoPelaTelaDetalhes(produto, cor, qtd) {
     
     // Feedback e fecha a tela (opcional, pode manter aberta se quiser)
     mostrarToast(`${produto.nome} adicionado!`);
-    fecharTelaProduto(); 
 }
