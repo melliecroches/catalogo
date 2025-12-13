@@ -838,61 +838,62 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     }
     
     /* ===================================================
-       RODAPÉ (CORREÇÃO DE ESPAÇAMENTO MÓVEL AGRESSIVA)
+       RODAPÉ (COMPACTAÇÃO EXTREMA E BLOCOS VERTICAIS)
        =================================================== */
     
-    /* 1. Zera o padding vertical do rodapé (mínimo necessário) */
+    /* Footer bem compacto no mobile */
     #rodape-site {
-        padding: 15px 10px !important; 
-        margin-top: 15px !important;   
+        padding: 10px !important;
+        margin-top: 10px !important;
     }
 
     .footer-container {
-        flex-direction: column;
-        gap: 0px !important; 
+        display: flex;
+        flex-direction: line;
+        gap: 20px !important;
     }
-    
+
     .footer-col {
-        min-width: 100%;
-        padding: 0;
-        /* Zera a margem inferior para que as colunas fiquem coladas */
-        margin-bottom: 0px !important; 
+        padding: 8px 0 !important;
+        margin: 0 !important;
+        border-bottom: 1px solid #eee;
     }
-    
-    /* 2. Zera as margens verticais internas dos textos e títulos */
+
+    /* Última seção sem linha */
+    .footer-col:last-child {
+        border-bottom: none;
+    }
+
+    /* Títulos */
     .footer-col h3 {
-        /* ⬇️ CORREÇÃO DE COMPRESSÃO AQUI ⬇️ */
-        margin: 5px 0 !important;    
-        padding-bottom: 3px !important; 
-        line-height: 1.2;
+        margin: 0 0 5px 0 !important;
+        padding: 0 !important;
+        font-size: 1rem;
     }
 
-    /* ZERA a margem vertical dos parágrafos e itens da lista */
-    .footer-col p, .footer-col ul {
-        margin: 1px 0 !important; 
+    /* Textos e listas */
+    .footer-col p,
+    .footer-col ul,
+    .footer-col li {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.4;
     }
+
     .footer-col ul li {
-        margin-bottom: 1px !important;
+        margin-bottom: 4px !important;
     }
-    
-    /* Garante que os botões não criem espaço excessivo */
+
+    /* Botões de contato mais colados */
     .botoes-contato {
-        margin-top: 10px !important; 
-        margin-bottom: 10px !important; 
-        gap: 5px; 
+        margin-top: 8px !important;
+        gap: 6px !important;
     }
 
-    /* Copyright */
     .copyright {
-        text-align: left;
-        margin-top: 10px !important; 
+        margin-top: 10px !important;
     }
-    /* ⬆️ FIM DA CORREÇÃO AGRESSIVA ⬆️ */
-
-    /* MOBILE DA TELA DE DETALHES */
-    .produto-container { flex-direction: column; gap: 20px; margin: 0; }
-    #img-principal-detalhe { height: 300px; }
-    .produto-infos h2 { font-size: 1.5rem; }
+    /* ⬆️ FIM DA CORREÇÃO AGRESSIVA DO RODAPÉ ⬆️ */
     
 } /* FIM DO MEDIA QUERY */
 
