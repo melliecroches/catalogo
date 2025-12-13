@@ -1004,3 +1004,7 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     #img-principal-detalhe { height: 300px; }
     .produto-infos h2 { font-size: 1.5rem; }
 }
+
+.tela-produto:not(.escondido) ~ #btn-topo {
+    display: none !important;
+}
