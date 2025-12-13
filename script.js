@@ -295,62 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Inicia o filtro (começa misturado)
     filtrarColecao('todos');
 
-    // 4. ATIVAR BOTÕES "ADICIONAR AO CARRINHO"
-    document.querySelectorAll('.adicionar-carrinho').forEach(button => {
-        button.addEventListener('click', function() {
-            const nome = this.getAttribute('data-nome');
-            const precoUnitario = parseFloat(this.getAttribute('data-preco'));
-            
-            const cardDetalhes = this.closest('.card-detalhes'); 
-            const selectCor = cardDetalhes.querySelector('select'); 
-            const corSelecionada = selectCor ? selectCor.value : 'Padrão';
-            
-            const inputQtd = cardDetalhes.querySelector('.input-quantidade');
-            const quantidade = parseInt(inputQtd.value) || 1; 
-            
-            // -----------------------------------------------------------
-            // NOVO ITEM
-            // -----------------------------------------------------------
-            const novoItem = {
-                nome: nome,
-                cor: corSelecionada,
-                precoUnitario: precoUnitario, 
-                quantidade: quantidade, 
-                precoTotalItem: precoUnitario * quantidade
-            };
-
-            // -----------------------------------------------------------
-            // LÓGICA DE UNIFICAÇÃO (ENCONTRAR ITEM EXISTENTE)
-            // -----------------------------------------------------------
-            let itemExistente = carrinho.find(item => 
-                item.nome === novoItem.nome && item.cor === novoItem.cor
-            );
-
-            if (itemExistente) {
-                // Se o item já existe, apenas aumenta a quantidade e recalcula o total
-                itemExistente.quantidade += novoItem.quantidade;
-                itemExistente.precoTotalItem = itemExistente.precoUnitario * itemExistente.quantidade;
-            } else {
-                // Se não existe, adiciona o novo item ao carrinho
-                carrinho.push(novoItem);
-            }
-            
-            atualizarCarrinhoHTML(); // Chamado apenas uma vez
-
-            // --- Feedback Visual ---
-            const textoOriginal = this.innerText;
-            this.innerText = "✓ Adicionado!";
-            this.style.backgroundColor = "#25d366";
-            
-            setTimeout(() => {
-                this.innerText = textoOriginal;
-                this.style.backgroundColor = "";
-            }, 1500);
-
-            mostrarToast(`${nome} adicionado com sucesso!`);
-        });
-    });
-
     // 5. ATIVAR LIGHTBOX (ZOOM NA IMAGEM)
     // (Mesma lógica: precisamos reativar pois as imagens são novas)
     const lightbox = document.getElementById('lightbox');

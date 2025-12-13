@@ -271,7 +271,7 @@ header {
     flex-direction: column;
 }
 
-/* ⬇️ NOVO: Remove os campos de cor e quantidade do card principal ⬇️ */
+/* LINHAS 211-215 NO SEU ARQUIVO */
 .brinco-card select, 
 .brinco-card input.input-quantidade,
 .brinco-card .card-detalhes label { /* Adiciona o label para sumir também */
@@ -557,13 +557,6 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     }
 
     .preco { font-size: 0.9rem; margin: 2px 0 8px 0; }
-
-    /* ⬇️ Adicione estas regras para limpar o card principal no mobile/desktop ⬇️ */
-    .card-detalhes label, 
-    .card-detalhes select, 
-    .card-detalhes input.input-quantidade {
-        display: none !important; /* Esconde todos os controles que foram removidos do card principal */
-    }
 
     button.adicionar-carrinho {
         padding: 6px;
