@@ -166,26 +166,43 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputQtd = cardDetalhes.querySelector('.input-quantidade');
             const quantidade = parseInt(inputQtd.value) || 1; 
             
-            const item = {
+            // -----------------------------------------------------------
+            // NOVO ITEM
+            // -----------------------------------------------------------
+            const novoItem = {
                 nome: nome,
                 cor: corSelecionada,
                 precoUnitario: precoUnitario, 
                 quantidade: quantidade, 
                 precoTotalItem: precoUnitario * quantidade
             };
+
+            // -----------------------------------------------------------
+            // LÓGICA DE UNIFICAÇÃO (ENCONTRAR ITEM EXISTENTE)
+            // -----------------------------------------------------------
+            let itemExistente = carrinho.find(item => 
+                item.nome === novoItem.nome && item.cor === novoItem.cor
+            );
+
+            if (itemExistente) {
+                // Se o item já existe, apenas aumenta a quantidade e recalcula o total
+                itemExistente.quantidade += novoItem.quantidade;
+                itemExistente.precoTotalItem = itemExistente.precoUnitario * itemExistente.quantidade;
+            } else {
+                // Se não existe, adiciona o novo item ao carrinho
+                carrinho.push(novoItem);
+            }
             
-            carrinho.push(item);
-            atualizarCarrinhoHTML();
+            atualizarCarrinhoHTML(); // Chamado apenas uma vez
+
+            // --- Feedback Visual ---
+            const textoOriginal = this.innerText;
+            this.innerText = "✓ Adicionado!";
+            this.style.backgroundColor = "#25d366";
             
-            // --- MELHORIA: Feedback Visual no Botão (Sem alerta chato) ---
-            const textoOriginal = this.innerText; // Guarda o texto original
-            this.innerText = "✓ Adicionado!";     // Muda o texto
-            this.style.backgroundColor = "#25d366"; // Muda para verde (sucesso)
-            
-            // Depois de 1.5 segundos, volta ao normal
             setTimeout(() => {
                 this.innerText = textoOriginal;
-                this.style.backgroundColor = ""; // Volta a cor do CSS
+                this.style.backgroundColor = "";
             }, 1500);
 
             mostrarToast(`${nome} adicionado com sucesso!`);
