@@ -937,16 +937,16 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
    TELA DE DETALHES DO PRODUTO (VIRTUAL PAGE)
    =================================================== */
 .tela-produto {
-    position: fixed;
+    position: fixed; /* GARANTE QUE ELA FIQUE FIXA NA JANELA (viewport) */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: #fff;
-    z-index: 1200; /* Acima do header, abaixo do modal/toast */
-    overflow-y: auto; /* Permite rolar a tela */
+    z-index: 1200; 
+    overflow-y: auto; /* Permite rolar a tela de detalhes, mas não o body */
     padding-bottom: 50px;
-    animation: slideInRight 0.3s ease-out; /* Efeito de entrada */
+    animation: slideInRight 0.3s ease-out; 
 }
 
 /* Animação vindo da direita */
