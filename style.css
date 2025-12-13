@@ -947,6 +947,7 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
     overflow-y: auto; /* Permite rolar a tela de detalhes, mas não o body */
     padding-bottom: 50px;
     animation: slideInRight 0.3s ease-out; 
+    overscroll-behavior: contain;
 }
 
 /* Animação vindo da direita */
