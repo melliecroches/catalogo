@@ -78,20 +78,19 @@ function inicializarLoja() {
 }
 
 // Função que gera as opções do <select> baseada na categoria
-function gerarOpcoesCores(categoria) {
-    const listaCores = CORES_COLECAO[categoria];
+function gerarOpcoesCores(paletaId, labelPadrao = 'Escolha a Cor') {
+    // Agora busca a paleta pelo ID passado (paletaId)
+    const listaCores = CORES_COLECAO[paletaId]; 
 
-    // Se a categoria tiver cores definidas no topo do arquivo
     if (listaCores && listaCores.length > 0) {
         return listaCores.map((corObj, index) => 
             `<option value="${corObj.nome}">${index + 1}. ${corObj.nome}</option>`
         ).join('');
     } 
     
-    // Se não tiver cores definidas (ex: categoria nova), retorna padrão
+    // Fallback se não encontrar a paleta
     return `<option value="Padrão">Cor Única / Padrão</option>`;
 }
-
 // =================================================================
 // FUNÇÃO PARA GERAR O HTML DOS PRODUTOS
 // (A variável 'produtos' vem do arquivo produtos.js, carregado antes)
@@ -104,11 +103,39 @@ function renderizarCatalogo() {
         const secaoDestino = document.getElementById(produto.categoria);
         
         if (secaoDestino) {
-            // AQUI MUDOU: Usa a função automática baseada na CATEGORIA, ignorando o produto.cores
-            const opcoesCoresHTML = gerarOpcoesCores(produto.categoria);
+            let controlesCorHTML = '';
 
+            // 1. Lógica para produtos com MÚLTIPLAS CORES (o novo Brinco Lua Flor)
+            if (produto.camposCor && produto.camposCor.length > 0) {
+                // Para cada campo de cor (miolo, pétalas, etc.)
+                produto.camposCor.forEach(campo => {
+                    // Gera as opções usando a paleta definida no produto (campo.paleta)
+                    const opcoesHTML = gerarOpcoesCores(campo.paleta, campo.label);
+                    
+                    controlesCorHTML += `
+                        <label for="${campo.id}-${produto.id}">${campo.label}:</label>
+                        <select id="${campo.id}-${produto.id}" class="select-cor-multipla">
+                            ${opcoesHTML}
+                        </select>
+                    `;
+                });
+
+            } else {
+                // 2. Lógica para produtos de COR ÚNICA (o Brinco Estrela, que usa a cor da Coleção)
+                // Usa o ID da coleção como paleta para a função gerarOpcoesCores
+                const opcoesHTML = gerarOpcoesCores(produto.categoria, 'Escolha a Cor'); 
+
+                controlesCorHTML = `
+                    <label for="cor-unica-${produto.id}">Escolha a Cor:</label>
+                    <select id="cor-unica-${produto.id}" class="select-cor-unica">
+                        ${opcoesHTML}
+                    </select>
+                `;
+            }
+            
+            // O restante do card HTML é o mesmo, mas usando a variável 'controlesCorHTML'
             const cardHTML = `
-                <div class="brinco-card">
+                <div class="brinco-card" data-id="${produto.id}">
                     <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
                     <div class="card-detalhes">
                         <h3 onclick="abrirProduto(${produto.id})" style="cursor: pointer; text-decoration: underline;">
@@ -116,15 +143,10 @@ function renderizarCatalogo() {
                         </h3>
                         <p class="preco">${formatarMoeda(produto.preco)}</p>
                         
-                        <label for="cor-${produto.id}">Escolha a Cor:</label>
-                        <select id="cor-${produto.id}">
-                            ${opcoesCoresHTML}
-                        </select>
-
-                        <label>Quantidade:</label>
+                        ${controlesCorHTML} <label>Quantidade:</label>
                         <input type="number" class="input-quantidade" value="1" min="1">
 
-                        <button class="adicionar-carrinho" data-nome="${produto.nome}" data-preco="${produto.preco}">
+                        <button class="adicionar-carrinho" data-id="${produto.id}" data-preco="${produto.preco}">
                             Adicionar ao Carrinho
                         </button>
                     </div>
@@ -723,6 +745,8 @@ function voltarAoTopo() {
 // FUNÇÕES DA PÁGINA DE DETALHES DO PRODUTO
 // =================================================================
 
+// ARQUIVO: script.js
+
 function abrirProduto(idProduto) {
     const produto = produtos.find(p => p.id === idProduto);
     if (!produto) return;
@@ -734,15 +758,17 @@ function abrirProduto(idProduto) {
     document.getElementById('detalhe-tamanho').innerText = produto.tamanho || "Único";
     document.getElementById('detalhe-categoria').innerText = NOMES_CATEGORIAS[produto.categoria] || produto.categoria;
 
-    // 2. Preenche o Menu de Cores (Select)
-    const selectCor = document.getElementById('detalhe-cor');
-    selectCor.innerHTML = gerarOpcoesCores(produto.categoria);
 
-    // =========================================================
-    // 3. PARTE NOVA: DESENHA AS BOLINHAS
-    // =========================================================
+    // 2. Preenche a Paleta de Bolinhas (ao lado da etiqueta da categoria)
     const divPaleta = document.getElementById('detalhe-paleta');
-    const listaCores = CORES_COLECAO[produto.categoria];
+    
+    // Se o produto for customizável (multiplas cores), usa a paleta da primeira cor como referência.
+    // Se for cor única, usa a paleta da categoria (que é a cor única).
+    const paletaPadrao = (produto.camposCor && produto.camposCor[0]) 
+                            ? produto.camposCor[0].paleta 
+                            : produto.categoria;
+                            
+    const listaCores = CORES_COLECAO[paletaPadrao];
 
     if (listaCores && listaCores.length > 0) {
         // Cria as bolinhas numeradas
@@ -753,36 +779,91 @@ function abrirProduto(idProduto) {
                 ${index + 1}
             </span>
         `).join('');
-        
-        divPaleta.style.display = 'flex'; // Mostra a div (que está dentro do flex principal)
+        divPaleta.style.display = 'flex';
     } else {
         divPaleta.innerHTML = '';
-        divPaleta.style.display = 'none'; // Esconde se não tiver cor
+        divPaleta.style.display = 'none';
     }
-    // =========================================================
 
-    // 4. Imagens
+
+    // 3. NOVO: Preenche os Controles de Cor (Múltiplos selects ou Select Único)
+    const areaCompraDetalhe = document.querySelector('#tela-produto .area-compra-detalhe');
+    const htmlControles = [];
+    
+    // 3A. Se tiver campos de cor customizados (Multiplas Cores):
+    if (produto.camposCor && produto.camposCor.length > 0) {
+        
+        produto.camposCor.forEach(campo => {
+            // Usa o ID único 'detalhe-miolo' ou 'detalhe-petalas'
+            const opcoesHTML = gerarOpcoesCores(campo.paleta, campo.label);
+            
+            htmlControles.push(`
+                <div style="margin-bottom: 15px;">
+                    <label for="detalhe-${campo.id}">${campo.label}:</label>
+                    <select id="detalhe-${campo.id}" style="width: 100%;" class="select-detalhe-cor">
+                        ${opcoesHTML}
+                    </select>
+                </div>
+            `);
+        });
+        
+    } else {
+        // 3B. Se for cor única (usa o select padrão antigo):
+        // Usa o ID genérico 'detalhe-cor-unica'
+        const opcoesHTML = gerarOpcoesCores(produto.categoria, 'Escolha a Cor');
+        htmlControles.push(`
+            <div style="margin-bottom: 15px;">
+                <label for="detalhe-cor-unica">Escolha a Cor:</label>
+                <select id="detalhe-cor-unica" style="width: 100%;" class="select-detalhe-cor">
+                    ${opcoesHTML}
+                </select>
+            </div>
+        `);
+    }
+    
+    // Monta o HTML final com os campos de cor, QUANTIDADE e botão
+    areaCompraDetalhe.innerHTML = `
+        ${htmlControles.join('')}
+
+        <div style="margin-bottom: 15px;">
+            <label for="detalhe-qtd">Quantidade:</label>
+            <input type="number" id="detalhe-qtd" value="1" min="1" class="input-quantidade" style="width: 100%;">
+        </div>
+
+        <button id="btn-add-detalhe" class="btn-comprar-grande">
+            Adicionar ao Carrinho
+        </button>
+    `;
+    
+    // 4. Configura o Botão de Comprar Desta Tela
+    // (Precisa ser reconfigurado porque trocamos o HTML interno da areaCompraDetalhe)
+    const btnComprar = document.getElementById('btn-add-detalhe');
+    
+    // Remove eventos antigos clonando o botão
+    const novoBtn = btnComprar.cloneNode(true);
+    btnComprar.parentNode.replaceChild(novoBtn, btnComprar);
+    
+    // Adiciona o novo evento de compra. Passamos apenas o produto, pois a função
+    // 'adicionarAoCarrinhoPelaTelaDetalhes' vai ler a cor/qtd diretamente da tela.
+    novoBtn.addEventListener('click', () => {
+        adicionarAoCarrinhoPelaTelaDetalhes(produto);
+    });
+
+    // 5. Imagens (código para carregar fotos extras)
     const imgPrincipal = document.getElementById('img-principal-detalhe');
     const divMiniaturas = document.getElementById('lista-miniaturas');
     imgPrincipal.src = produto.imagem;
 
     let todasFotos = [produto.imagem];
-    if (produto.fotosExtras) todasFotos = todasFotos.concat(produto.fotosExtras);
-
-    divMiniaturas.innerHTML = todasFotos.map(fotoSrc => `
-        <img src="${fotoSrc}" onclick="trocarFotoDetalhe(this.src)" class="${fotoSrc === produto.imagem ? 'ativa' : ''}">
-    `).join('');
-
-    // 5. Arruma o botão de Comprar (remove bugs antigos de clique duplo)
-    const btnComprar = document.getElementById('btn-add-detalhe');
-    const novoBtn = btnComprar.cloneNode(true);
-    btnComprar.parentNode.replaceChild(novoBtn, btnComprar);
-    
-    novoBtn.addEventListener('click', () => {
-        const cor = document.getElementById('detalhe-cor').value;
-        const qtd = parseInt(document.getElementById('detalhe-qtd').value) || 1;
-        adicionarAoCarrinhoPelaTelaDetalhes(produto, cor, qtd);
-    });
+    if (produto.fotosExtras && produto.fotosExtras.length > 0) {
+        todasFotos = todasFotos.concat(produto.fotosExtras);
+    }
+    // Garante que o container das miniaturas exista antes de preencher
+    if(divMiniaturas) {
+        divMiniaturas.innerHTML = todasFotos.map(fotoSrc => `
+            <img src="${fotoSrc}" onclick="trocarFotoDetalhe(this.src)" class="${fotoSrc === produto.imagem ? 'ativa' : ''}">
+        `).join('');
+    }
 
     // 6. Abre a tela
     document.getElementById('tela-produto').classList.remove('escondido');
@@ -804,11 +885,30 @@ function trocarFotoDetalhe(src) {
     });
 }
 
-function adicionarAoCarrinhoPelaTelaDetalhes(produto, cor, qtd) {
-    // Reutiliza a lógica de adicionar ao carrinho
+function adicionarAoCarrinhoPelaTelaDetalhes(produto) {
+    const qtd = parseInt(document.getElementById('detalhe-qtd').value) || 1;
+    let corSelecionada = ''; // Variável que vai para o carrinho
+
+    // 1. Se o produto tem múltiplas cores (ex: Brinco Flor)
+    if (produto.camposCor && produto.camposCor.length > 0) {
+        let coresDetalhe = [];
+        produto.camposCor.forEach(campo => {
+            const selectElement = document.getElementById(`detalhe-${campo.id}`);
+            // Formata: "Miolo: Azul / Pétalas: Verde"
+            coresDetalhe.push(`${campo.label.split(' ')[0]}: ${selectElement.value}`);
+        });
+        corSelecionada = coresDetalhe.join(' / ');
+    } else {
+        // 2. Se o produto tem cor única (usa o select padrão)
+        const selectElement = document.getElementById('detalhe-cor-unica');
+        corSelecionada = selectElement ? selectElement.value : 'Padrão';
+    }
+    
+    // 3. Cria o objeto e adiciona ao carrinho
     const novoItem = {
         nome: produto.nome,
-        cor: cor,
+        // O nome da cor agora pode ser "Miolo: Azul / Pétalas: Verde"
+        cor: corSelecionada, 
         precoUnitario: produto.preco,
         quantidade: qtd,
         precoTotalItem: produto.preco * qtd
@@ -825,6 +925,5 @@ function adicionarAoCarrinhoPelaTelaDetalhes(produto, cor, qtd) {
 
     atualizarCarrinhoHTML();
     
-    // Feedback e fecha a tela (opcional, pode manter aberta se quiser)
     mostrarToast(`${produto.nome} adicionado!`);
 }

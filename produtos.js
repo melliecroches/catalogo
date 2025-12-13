@@ -27,31 +27,28 @@ const CORES_COLECAO = {
 const produtos = [
     {
         id: 1,
-        nome: "Brinco Lua",
-        preco: 29.90,
+        nome: "Brinco Lua Flor",
+        preco: 45.00, // Preço ajustado para customizado
         imagem: "imagens/brinco-mar.jpg",
         categoria: "verao", 
-        cores: ["Dourado", "Prateado"],
-        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
-        tamanho: "4.5cm de altura",
-        fotosExtras: [
-            "imagens/estrela_modelo.jpg", // Foto na orelha
-            "imagens/estrela_detalhe.jpg" // Foto de perto
-        ]   
+        // NOVO: Define os campos de cor que o cliente deve escolher
+        camposCor: [
+            { id: "miolo", label: "Cor do Miolo", paleta: "verao" },
+            { id: "petalas", label: "Cor das Pétalas", paleta: "verao" }
+        ],
+        descricao: "Brinco Flor customizável. Escolha a cor do miolo e das pétalas para criar seu estilo único.",
+        tamanho: "5cm de diâmetro",
+        // ... (fotosExtras)
     },
+    // O Brinco Estrela (ID 2) continua usando o sistema antigo de cor única da coleção:
     {
         id: 2,
         nome: "Brinco Estrela",
         preco: 39.90,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "verao",
-        cores: ["Dourado", "Rosê"],
-        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
-        tamanho: "4.5cm de altura",
-        fotosExtras: [
-            "imagens/estrela_modelo.jpg", // Foto na orelha
-            "imagens/estrela_detalhe.jpg" // Foto de perto
-        ]
+        // SEM o campo 'camposCor', ele usa o sistema padrão (Cor Única da Coleção)
+        // ...
     },
     {
         id: 3,
