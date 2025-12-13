@@ -1,3 +1,11 @@
+// Função auxiliar para formatar dinheiro (R$) profissionalmente
+function formatarMoeda(valor) {
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(valor);
+}
+
 // Tenta pegar o que está salvo no navegador. Se não tiver nada, cria um array vazio.
 let carrinho = JSON.parse(localStorage.getItem('carrinho_compras')) || [];
 
@@ -27,7 +35,7 @@ function renderizarCatalogo() {
                     <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
                     <div class="card-detalhes">
                         <h3>${produto.nome}</h3>
-                        <p class="preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
+                        <p class="preco">${formatarMoeda(produto.preco)}</p>
                         
                         <label for="cor-${produto.id}">Cor:</label>
                         <select id="cor-${produto.id}">
@@ -107,7 +115,7 @@ function atualizarCarrinhoHTML() {
             li.innerHTML = `
                 <div class="item-detalhes">
                     ${item.nome} (${item.cor}) 
-                    <p class="item-subtotal">R$ ${item.precoTotalItem.toFixed(2)}</p>
+                    <p class="item-subtotal">${formatarMoeda(item.precoTotalItem)}</p>
                 </div>
                 <div class="item-controles">
                     <input type="number" value="${item.quantidade}" min="1" 
@@ -134,7 +142,8 @@ function atualizarCarrinhoHTML() {
 
     // Atualiza os totais na lateral
     totalItensSpan.textContent = totalUnidades; 
-    valorTotalSpan.textContent = totalValor.toFixed(2);
+    // Remove o "R$" e o espaço, deixando só o número (ex: 1.250,00)
+    valorTotalSpan.textContent = formatarMoeda(totalValor).replace('R$', '').trim();
 }
 
 function removerItemCarrinho(index) {
@@ -293,7 +302,7 @@ function enviarPedidoWhatsapp() {
     let valorTotal = 0;
     
     carrinho.forEach(item => {
-        resumoProdutos += `- ${item.quantidade}x ${item.nome} (${item.cor}) - R$ ${item.precoTotalItem.toFixed(2)}\n`;
+        resumoProdutos += `- ${item.quantidade}x ${item.nome} (${item.cor}) - ${formatarMoeda(item.precoTotalItem)}\n`;
         valorTotal += item.precoTotalItem;
     });
     
@@ -305,7 +314,7 @@ function enviarPedidoWhatsapp() {
         `--------------------------------\n` +
         `*🛒 ITENS DO PEDIDO:*\n` + 
         resumoProdutos + 
-        `\n💰 *TOTAL PRODUTOS: R$ ${valorTotal.toFixed(2)}*\n` +
+        `\n💰 *TOTAL PRODUTOS: ${formatarMoeda(valorTotal)}*\n` +
         `--------------------------------\n\n` +
         `${textoEndereco}\n\n` +
         `_Aguardo confirmação para pagamento._`;
