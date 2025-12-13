@@ -804,23 +804,25 @@ function abrirProduto(idProduto) {
 
     // 6. Abre a tela
     document.getElementById('tela-produto').classList.remove('escondido');
-    document.body.style.overflow = 'hidden';
-
-    // ⬇️ NOVO: ESCONDE O BOTÃO VOLTAR AO TOPO ⬇️
+    document.body.style.overflow = 'hidden'; 
+    
+    // ⬇️ CORREÇÃO DEFINITIVA: FORÇA o display: none ⬇️
     const botaoTopo = document.getElementById("btn-topo");
     if (botaoTopo) {
-        botaoTopo.classList.remove("mostrar");
+        botaoTopo.style.display = 'none'; // Aplica o estilo inline mais forte
     }
 }
 
 function fecharTelaProduto() {
     document.getElementById('tela-produto').classList.add('escondido');
-    document.body.style.overflow = ''; // Reabilita a rolagem
+    document.body.style.overflow = ''; // Destrava a rolagem
     
-    // ⬇️ NOVO: FORÇA A VERIFICAÇÃO DO BOTÃO VOLTAR AO TOPO ⬇️
-    // Isto garante que o botão aparecerá se a página estiver longe do topo.
+    // ⬇️ REVERTE A CORREÇÃO: Remove o estilo display: none ⬇️
     const botaoTopo = document.getElementById("btn-topo");
     if (botaoTopo) {
+        botaoTopo.style.display = ''; // Remove o estilo inline
+        
+        // E REVERTE A LÓGICA DE VISIBILIDADE (como estava antes)
         if (window.scrollY > 300) {
             botaoTopo.classList.add("mostrar");
         } else {
