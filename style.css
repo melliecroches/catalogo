@@ -677,3 +677,33 @@ body { padding-top: 150px; }
     display: inline-block; /* Linha fica do tamanho do texto */
     width: 100%;
 }
+
+/* ===================================================
+   TOAST NOTIFICATION (Mensagem Flutuante)
+   =================================================== */
+
+#toast {
+    visibility: hidden; /* Escondido por padrão */
+    min-width: 250px;
+    background-color: #333; /* Fundo escuro elegante */
+    color: #fff; /* Texto branco */
+    text-align: center;
+    border-radius: 50px; /* Bordas bem redondas */
+    padding: 16px;
+    position: fixed;
+    z-index: 3000; /* BEM ALTO para ficar acima do Header e Menu */
+    left: 50%;
+    top: 30px; /* Distância do topo */
+    transform: translateX(-50%); /* Centraliza perfeitamente */
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.5s, top 0.5s; /* Animação suave */
+}
+
+/* Classe que ativamos via JS para mostrar */
+#toast.mostrar {
+    visibility: visible;
+    opacity: 1;
+    top: 50px; /* Pequeno movimento para baixo ao aparecer */
+}

@@ -187,6 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.innerText = textoOriginal;
                 this.style.backgroundColor = ""; // Volta a cor do CSS
             }, 1500);
+
+            mostrarToast(`${nome} adicionado com sucesso!`);
         });
     });
 
@@ -366,3 +368,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Função auxiliar para mostrar o Toast
+function mostrarToast(mensagem) {
+    const toast = document.getElementById("toast");
+    toast.innerText = mensagem; // Define o texto (ex: "Brinco Lua adicionado!")
+    toast.className = "mostrar"; // Adiciona a classe que torna visível
+    
+    // Depois de 3 segundos (3000ms), remove a classe para sumir
+    setTimeout(function(){ 
+        toast.className = toast.className.replace("mostrar", ""); 
+    }, 3000);
+}
