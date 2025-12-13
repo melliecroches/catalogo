@@ -849,7 +849,7 @@ button.adicionar-carrinho:hover { background-color: #a30052; }
 
     .footer-container {
         display: flex;
-        flex-direction: line;
+        flex-direction: row;
         gap: 20px !important;
     }
 
