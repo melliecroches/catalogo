@@ -2,7 +2,7 @@
 // CONFIGURAÇÕES DA LOJA
 // =================================================================
 const CONFIG = {
-    telefone: '99999999999',    // Seu WhatsApp (somente números)
+    telefone: '5584996140526',    // Seu WhatsApp (somente números)
     nomeLoja: 'Melliê Crochês', // Nome da Loja
     instagram: 'melliecroches'  // Seu usuário do Instagram (sem @)
 };
@@ -92,7 +92,9 @@ function renderizarCatalogo() {
                 <div class="brinco-card">
                     <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
                     <div class="card-detalhes">
-                        <h3>${produto.nome}</h3>
+                        <h3 onclick="abrirProduto(${produto.id})" style="cursor: pointer; text-decoration: underline;">
+                            ${produto.nome}
+                        </h3>
                         <p class="preco">${formatarMoeda(produto.preco)}</p>
                         
                         <label for="cor-${produto.id}">Cor:</label>
@@ -697,4 +699,106 @@ function voltarAoTopo() {
         top: 0,
         behavior: "smooth"
     });
+}
+
+// =================================================================
+// FUNÇÕES DA PÁGINA DE DETALHES DO PRODUTO
+// =================================================================
+
+function abrirProduto(idProduto) {
+    // 1. Acha o produto na lista (garante que id seja número)
+    const produto = produtos.find(p => p.id === idProduto);
+    if (!produto) return;
+
+    // 2. Preenche as informações básicas
+    document.getElementById('detalhe-nome').innerText = produto.nome;
+    document.getElementById('detalhe-preco').innerText = formatarMoeda(produto.preco);
+    document.getElementById('detalhe-descricao').innerText = produto.descricao || "Sem descrição.";
+    document.getElementById('detalhe-tamanho').innerText = produto.tamanho || "Único";
+    
+    // Usa o mapa de nomes bonitos que criamos antes, ou usa o ID mesmo
+    const nomeCategoria = NOMES_CATEGORIAS[produto.categoria] || produto.categoria;
+    document.getElementById('detalhe-categoria').innerText = nomeCategoria;
+
+    // 3. Preenche as Cores (Select)
+    const selectCor = document.getElementById('detalhe-cor');
+    selectCor.innerHTML = produto.cores.map(c => `<option value="${c}">${c}</option>`).join('');
+
+    // 4. Monta a Galeria de Imagens
+    const imgPrincipal = document.getElementById('img-principal-detalhe');
+    const divMiniaturas = document.getElementById('lista-miniaturas');
+    
+    // Define a imagem principal inicial
+    imgPrincipal.src = produto.imagem;
+
+    // Cria lista de todas as fotos (Principal + Extras)
+    let todasFotos = [produto.imagem];
+    if (produto.fotosExtras && produto.fotosExtras.length > 0) {
+        todasFotos = todasFotos.concat(produto.fotosExtras);
+    }
+
+    // Gera o HTML das miniaturas
+    divMiniaturas.innerHTML = todasFotos.map(fotoSrc => `
+        <img src="${fotoSrc}" onclick="trocarFotoDetalhe(this.src)" class="${fotoSrc === produto.imagem ? 'ativa' : ''}">
+    `).join('');
+
+    // 5. Configura o Botão de Comprar desta tela
+    const btnComprar = document.getElementById('btn-add-detalhe');
+    
+    // Remove eventos antigos (cloneNode truque) para não duplicar cliques
+    const novoBtn = btnComprar.cloneNode(true);
+    btnComprar.parentNode.replaceChild(novoBtn, btnComprar);
+    
+    // Adiciona o novo evento de compra
+    novoBtn.addEventListener('click', () => {
+        const corEscolhida = document.getElementById('detalhe-cor').value;
+        const qtdEscolhida = parseInt(document.getElementById('detalhe-qtd').value) || 1;
+        
+        adicionarAoCarrinhoPelaTelaDetalhes(produto, corEscolhida, qtdEscolhida);
+    });
+
+    // 6. Mostra a Tela
+    document.getElementById('tela-produto').classList.remove('escondido');
+    document.body.style.overflow = 'hidden'; // Trava a rolagem da loja no fundo
+}
+
+function fecharTelaProduto() {
+    document.getElementById('tela-produto').classList.add('escondido');
+    document.body.style.overflow = ''; // Destrava a rolagem
+}
+
+function trocarFotoDetalhe(src) {
+    document.getElementById('img-principal-detalhe').src = src;
+    
+    // Atualiza borda da miniatura ativa
+    document.querySelectorAll('.miniaturas img').forEach(img => {
+        if(img.src.includes(src)) img.classList.add('ativa');
+        else img.classList.remove('ativa');
+    });
+}
+
+function adicionarAoCarrinhoPelaTelaDetalhes(produto, cor, qtd) {
+    // Reutiliza a lógica de adicionar ao carrinho
+    const novoItem = {
+        nome: produto.nome,
+        cor: cor,
+        precoUnitario: produto.preco,
+        quantidade: qtd,
+        precoTotalItem: produto.preco * qtd
+    };
+
+    let itemExistente = carrinho.find(item => item.nome === novoItem.nome && item.cor === novoItem.cor);
+
+    if (itemExistente) {
+        itemExistente.quantidade += novoItem.quantidade;
+        itemExistente.precoTotalItem = itemExistente.precoUnitario * itemExistente.quantidade;
+    } else {
+        carrinho.push(novoItem);
+    }
+
+    atualizarCarrinhoHTML();
+    
+    // Feedback e fecha a tela (opcional, pode manter aberta se quiser)
+    mostrarToast(`${produto.nome} adicionado!`);
+    fecharTelaProduto(); 
 }

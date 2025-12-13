@@ -82,7 +82,52 @@
             </div>
         </aside>
 
-    </div> <div id="modal-checkout" class="modal">
+    </div>
+    
+    <div id="tela-produto" class="tela-produto escondido">
+    
+        <div class="cabecalho-detalhes">
+            <button onclick="fecharTelaProduto()" class="btn-voltar">
+                ← Voltar para a Loja
+            </button>
+        </div>
+
+        <div class="produto-container">
+            <div class="produto-galeria">
+                <img id="img-principal-detalhe" src="" alt="Imagem Principal">
+                <div id="lista-miniaturas" class="miniaturas">
+                    </div>
+            </div>
+
+            <div class="produto-infos">
+                <span id="detalhe-categoria" class="tag-categoria">Coleção Verão</span>
+                <h2 id="detalhe-nome">Nome do Brinco</h2>
+                <p id="detalhe-preco" class="preco-grande">R$ 00,00</p>
+                
+                <div class="separador"></div>
+
+                <p id="detalhe-descricao" class="texto-descricao">Descrição do produto...</p>
+                
+                <div class="info-extra">
+                    <strong>📏 Tamanho:</strong> <span id="detalhe-tamanho">-</span>
+                </div>
+
+                <div class="area-compra-detalhe">
+                    <label>Escolha a Cor:</label>
+                    <select id="detalhe-cor"></select>
+
+                    <label>Quantidade:</label>
+                    <input type="number" id="detalhe-qtd" value="1" min="1" class="input-quantidade">
+
+                    <button id="btn-add-detalhe" class="btn-comprar-grande">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-checkout" class="modal">
         <div class="modal-conteudo">
             <h3>Finalizar Pedido</h3>
 

@@ -16,7 +16,13 @@ const produtos = [
         preco: 29.90,
         imagem: "imagens/brinco-mar.jpg",
         categoria: "verao", 
-        cores: ["Dourado", "Prateado"]
+        cores: ["Dourado", "Prateado"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]   
     },
     {
         id: 2,
@@ -24,7 +30,13 @@ const produtos = [
         preco: 39.90,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "verao",
-        cores: ["Dourado", "Rosê"]
+        cores: ["Dourado", "Rosê"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 3,
@@ -32,7 +44,13 @@ const produtos = [
         preco: 55.00,
         imagem: "imagens/brinco-mar.jpg",
         categoria: "verao", // Se quiser mudar a seção, mude aqui para "classicos"
-        cores: ["Ouro 18k", "Prata 925"]
+        cores: ["Ouro 18k", "Prata 925"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 4,
@@ -40,7 +58,13 @@ const produtos = [
         preco: 42.00,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "verao",
-        cores: ["Azul", "Verde", "Vermelho"]
+        cores: ["Azul", "Verde", "Vermelho"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 5,
@@ -48,7 +72,13 @@ const produtos = [
         preco: 60.00,
         imagem: "imagens/brinco-mar.jpg",
         categoria: "verao",
-        cores: ["Branca", "Creme"]
+        cores: ["Branca", "Creme"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 6,
@@ -56,7 +86,13 @@ const produtos = [
         preco: 25.00,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "verao",
-        cores: ["Dourado", "Prateado"]
+        cores: ["Dourado", "Prateado"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 7,
@@ -64,7 +100,13 @@ const produtos = [
         preco: 30.00,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "classicos",
-        cores: ["Dourado", "Prateado"]
+        cores: ["Dourado", "Prateado"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 8,
@@ -72,7 +114,13 @@ const produtos = [
         preco: 45.00,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "classicos",
-        cores: ["Dourado", "Prateado"]
+        cores: ["Dourado", "Prateado"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 9,
@@ -80,7 +128,13 @@ const produtos = [
         preco: 90.00,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "prata",
-        cores: ["Dourado", "Prateado"]
+        cores: ["Dourado", "Prateado"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     },
     {
         id: 10,
@@ -88,6 +142,12 @@ const produtos = [
         preco: 80.00,
         imagem: "imagens/brinco-sol.jpg",
         categoria: "festas",
-        cores: ["Dourado", "Prateado"]
+        cores: ["Dourado", "Prateado"],
+        descricao: "Um brinco leve e radiante, banhado a ouro 18k. Perfeito para iluminar seu look de verão.",
+        tamanho: "4.5cm de altura",
+        fotosExtras: [
+            "imagens/estrela_modelo.jpg", // Foto na orelha
+            "imagens/estrela_detalhe.jpg" // Foto de perto
+        ]
     }
 ];
