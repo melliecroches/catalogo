@@ -1,6 +1,14 @@
 // ARQUIVO: produtos.js
 // Este arquivo serve apenas como Banco de Dados dos produtos.
 
+// Mapa para transformar o ID da categoria em um Nome Bonito na tela
+const NOMES_CATEGORIAS = {
+    'verao': '✨ Coleção Verão 2024',
+    'classicos': '💍 Clássicos e Elegantes',
+    'festas': '🥂 Linha Festas & Luxo', // Exemplo futuro
+    'prata': '💎 Prata 925'            // Exemplo futuro
+};
+
 const produtos = [
     {
         id: 1,
@@ -71,7 +79,7 @@ const produtos = [
         nome: "Brinco Coral",
         preco: 90.00,
         imagem: "imagens/brinco-sol.jpg",
-        categoria: "classicos",
+        categoria: "prata",
         cores: ["Dourado", "Prateado"]
     },
     {
@@ -79,7 +87,7 @@ const produtos = [
         nome: "Brinco Barco",
         preco: 80.00,
         imagem: "imagens/brinco-sol.jpg",
-        categoria: "classicos",
+        categoria: "festas",
         cores: ["Dourado", "Prateado"]
     }
 ];

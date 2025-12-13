@@ -13,10 +13,8 @@
     <header>
         <h1>💎 Seu Catálogo de Brincos</h1>
         
-        <nav class="menu-navegacao">
+        <nav id="menu-container" class="menu-navegacao">
             <button class="btn-menu ativo" onclick="filtrarColecao('todos')">Ver Tudo</button>
-            <button class="btn-menu" onclick="filtrarColecao('verao')">Verão 2024</button>
-            <button class="btn-menu" onclick="filtrarColecao('classicos')">Clássicos</button>
         </nav>
 
         <input type="text" id="campo-busca" class="barra-busca" placeholder="🔍 Buscar por nome (ex: Pérola)...">
@@ -34,18 +32,6 @@
                 <div id="cabecalho-todos" class="cabecalho-colecao">
                     <h2>💎 Todos os Brincos</h2>
                 </div>
-
-                <section id="verao" class="colecao">
-                    <div class="cabecalho-colecao">
-                        <h2>✨ Coleção Verão 2024</h2>
-                    </div>
-                </section>
-
-                <section id="classicos" class="colecao">
-                    <div class="cabecalho-colecao">
-                        <h2>💍 Clássicos e Elegantes</h2>
-                    </div>
-                </section>
             </main>
 
             <footer id="rodape-site">
@@ -62,7 +48,7 @@
                         <ul>
                             <li>📦 Uber Flash ou Retirada.</li>
                             <li>💰 Pix (Acertado no WhatsApp).</li>
-                            <li>Obs: O pagamento não é feito pelo site.</li>
+                            <li>⚠️ Obs: O pagamento <strong>não</strong> é feito pelo site.</li>
                         </ul>
                     </div>
 

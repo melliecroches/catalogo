@@ -19,6 +19,55 @@ function formatarMoeda(valor) {
 let carrinho = JSON.parse(localStorage.getItem('carrinho_compras')) || [];
 
 // =================================================================
+// INICIALIZAÇÃO DINÂMICA (CRIA SEÇÕES E BOTÕES SOZINHO)
+// =================================================================
+function inicializarLoja() {
+    if (typeof produtos === 'undefined') return;
+
+    // 1. Descobre quais categorias existem no arquivo de produtos
+    // (O Set remove duplicatas automaticamente)
+    const categoriasUnicas = [...new Set(produtos.map(p => p.categoria))];
+
+    const menuContainer = document.getElementById('menu-container');
+    const mainContainer = document.getElementById('catalogo-principal');
+
+    categoriasUnicas.forEach(catId => {
+        // --- A. CRIA O BOTÃO NO MENU ---
+        // Se o botão já não existir (para evitar duplicação)
+        if (!document.querySelector(`button[onclick="filtrarColecao('${catId}')"]`)) {
+            const nomeBotao = NOMES_CATEGORIAS[catId] 
+                ? NOMES_CATEGORIAS[catId].replace(/^[^\w\s]+/, '').trim() // Remove emojis pro botão ficar limpo
+                : catId.charAt(0).toUpperCase() + catId.slice(1); // Fallback (Capitaliza)
+
+            const btn = document.createElement('button');
+            btn.className = 'btn-menu';
+            btn.innerText = nomeBotao; // Ex: "Verão 2024"
+            btn.setAttribute('onclick', `filtrarColecao('${catId}')`);
+            menuContainer.appendChild(btn);
+        }
+
+        // --- B. CRIA A SEÇÃO NO HTML ---
+        // Cria <section id="verao" class="colecao"> ... </section>
+        if (!document.getElementById(catId)) {
+            const section = document.createElement('section');
+            section.id = catId;
+            section.className = 'colecao';
+
+            // Pega o nome bonito com emoji ou usa o ID capitalizado
+            const tituloBonito = NOMES_CATEGORIAS[catId] || (catId.charAt(0).toUpperCase() + catId.slice(1));
+
+            section.innerHTML = `
+                <div class="cabecalho-colecao">
+                    <h2>${tituloBonito}</h2>
+                </div>
+                `;
+            
+            mainContainer.appendChild(section);
+        }
+    });
+}
+
+// =================================================================
 // FUNÇÃO PARA GERAR O HTML DOS PRODUTOS
 // (A variável 'produtos' vem do arquivo produtos.js, carregado antes)
 // =================================================================
@@ -226,13 +275,16 @@ function desfazerRemocao() {
 // =================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Primeiro desenhamos os produtos na tela
+    // 1. PRIMEIRO: Cria as abas e seções baseado no que existe no produtos.js
+    inicializarLoja(); 
+
+    // 2. SEGUNDO: Desenha os cards dentro das seções que acabamos de criar
     renderizarCatalogo();
     
-    // 2. Iniciamos o filtro (começa misturado)
+    // 3. Inicia o filtro (começa misturado)
     filtrarColecao('todos');
 
-    // 3. ATIVAR BOTÕES "ADICIONAR AO CARRINHO"
+    // 4. ATIVAR BOTÕES "ADICIONAR AO CARRINHO"
     document.querySelectorAll('.adicionar-carrinho').forEach(button => {
         button.addEventListener('click', function() {
             const nome = this.getAttribute('data-nome');
@@ -288,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. ATIVAR LIGHTBOX (ZOOM NA IMAGEM)
+    // 5. ATIVAR LIGHTBOX (ZOOM NA IMAGEM)
     // (Mesma lógica: precisamos reativar pois as imagens são novas)
     const lightbox = document.getElementById('lightbox');
     const imagemDestaque = document.getElementById('imagem-destaque');
