@@ -512,3 +512,123 @@ header {
 .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 6000; align-items: center; justify-content: center; }
 .lightbox-img { max-width: 95%; max-height: 90vh; }
 .fechar-btn-zoom { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2.5rem; cursor: pointer; }
+
+/* ===================================================
+   AJUSTE DO MODAL DE PRODUTO NO MOBILE
+   =================================================== */
+@media (max-width: 768px) {
+
+    /* Modal ocupa quase a tela inteira, mas sem exagero */
+    .modal-card {
+        width: 95%;
+        max-height: 92vh;
+        border-radius: 12px;
+    }
+
+    /* Layout vira coluna (imagem em cima, infos embaixo) */
+    .modal-body-produto {
+        flex-direction: column;
+    }
+
+    /* Área da foto mais compacta */
+    .area-foto {
+        padding: 10px;
+    }
+
+    .area-foto img {
+        max-height: 180px;
+    }
+
+    .galeria {
+        margin-top: 8px;
+    }
+
+    .galeria img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Infos mais enxutas */
+    .area-infos {
+        padding: 15px;
+    }
+
+    .area-infos h2 {
+        font-size: 1.2rem;
+    }
+
+    .preco-destaque {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .descricao-curta {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+
+    /* Selects mais compactos */
+    .select-cor-dinamico {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    /* Quantidade mais compacta */
+    .qtd-wrapper {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .qtd-wrapper button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    #qtd-selecionada {
+        font-size: 1rem;
+    }
+
+    /* BOTÃO VISÍVEL LOGO DE CARA */
+    #btn-add-carrinho {
+        padding: 12px;
+        font-size: 0.95rem;
+        position: sticky;
+        bottom: 10px;
+    }
+    /* Container da foto vira linha */
+    .area-foto {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Wrapper implícito da imagem principal */
+    .area-foto > img {
+        max-height: 200px;
+        flex-shrink: 0;
+    }
+
+    /* Galeria lateral */
+    .galeria {
+        display: flex;              /* ← ISSO que faltava */
+        flex-direction: column;
+        gap: 8px;
+        width: 50px;                /* força espaço visível */
+        margin: 0;
+    }
+
+    .galeria img {
+        width: 45px;
+        height: 45px;
+        opacity: 0.8;
+    }
+
+    .galeria img.ativa {
+        opacity: 1;
+        border-color: #d88ea3;
+    }
+
+}
