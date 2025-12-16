@@ -2,7 +2,7 @@
 // CONFIGURAÇÕES GERAIS
 // =================================================================
 const CONFIG = {
-    telefone: '558499999999',    // SEU WHATSAPP AQUI (DDD + Número)
+    telefone: '5584996140526',    // SEU WHATSAPP AQUI (DDD + Número)
     nomeLoja: 'Melliê Crochês',
     instagram: 'melliecroches'
 };
