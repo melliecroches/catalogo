@@ -262,12 +262,10 @@ function atualizarContadorCarrinho() {
 }
 
 function limparCarrinho() {
-    if (confirm("Deseja esvaziar sua sacola de compras?")) {
-        carrinho = [];
-        salvarCarrinho();
-        abrirModalCheckout(); 
-        atualizarContadorCarrinho();
-    }
+    carrinho = [];
+    salvarCarrinho();
+    abrirModalCheckout(); 
+    atualizarContadorCarrinho();
 }
 
 function abrirModalCheckout() {
@@ -478,7 +476,7 @@ function enviarPedidoWhatsapp() {
         mensagem += `\n📦 Entrega: ENVIO`;
         mensagem += `\n📍 Endereço: ${rua}, ${document.getElementById('end-numero').value} - ${bairro}, ${cidade}`;
     }
-
+    limparCarrinho();
     const link = `https://wa.me/${CONFIG.telefone}?text=${encodeURIComponent(mensagem)}`;
     window.open(link, '_blank');
 }
