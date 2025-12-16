@@ -46,7 +46,7 @@ header {
     height: 50px;
 }
 
-/* CORREÇÃO: Esconde o botão no desktop por padrão */
+/* Esconde o botão no desktop por padrão */
 .btn-icon-header {
     background: transparent;
     cursor: pointer;
@@ -142,6 +142,34 @@ header {
 /* Paleta e Sobre */
 .grid-cores-sidebar { display: flex; flex-wrap: wrap; gap: 5px; }
 .sidebar-sobre p { font-size: 0.85rem; line-height: 1.5; color: #777; font-style: italic; }
+
+/* NOVO ESTILO: Bloco de Aviso */
+.box-aviso-sidebar {
+    background-color: #fff0f5; /* Fundo rosinha claro */
+    border-left: 3px solid #d88ea3; /* Borda rosa na lateral */
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 0.8rem;
+}
+.box-aviso-sidebar strong {
+    color: #d88ea3;
+    display: block;
+    margin-bottom: 5px;
+}
+.box-aviso-sidebar ul {
+    list-style: disc; /* Bolinhas nos itens da lista */
+    padding-left: 18px;
+    margin: 0;
+}
+.box-aviso-sidebar li {
+    margin-bottom: 4px;
+    line-height: 1.4;
+    border-bottom: none; /* Remove a linha pontilhada da li padrão */
+}
+/* Fim do Novo Estilo */
+
+
 .sidebar-footer { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
 .link-contato { font-size: 0.85rem; color: #666; }
 
@@ -303,10 +331,9 @@ header {
 @media (min-width: 769px) {
     /* 1. Alinha o topo do cabeçalho (que só tem a logo) */
     .topo-mobile {
-        /* Define a largura máxima do topo e centraliza ele na tela */
         max-width: 1200px;
         margin: 0 auto;
-        /* Remove o space-between que estava desalinhando a logo */
+        /* Força a centralização, desativando o space-between */
         justify-content: center; 
         padding: 0 15px;
     }
@@ -321,7 +348,7 @@ header {
     /* 3. Aumenta a fonte do logo para desktop */
     .logo-site {
         font-size: 2.2rem;
-        flex-grow: 0; /* Desliga o flex-grow para não tentar expandir o H1 demais */
+        flex-grow: 0; 
         text-align: center; 
     }
 
