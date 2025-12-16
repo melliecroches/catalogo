@@ -16,7 +16,7 @@
         <div class="header-container">
             <h1 class="logo-site">Melliê Crochês</h1>
             <div class="busca-wrapper">
-                <input type="text" id="campo-busca" placeholder="🔍 Buscar (ex: Girassol)...">
+                <input type="text" id="campo-busca" placeholder="🔍 Buscar (ex: Pérola)...">
             </div>
         </div>
     </header>
@@ -24,16 +24,20 @@
     <div class="container-geral">
         
         <aside class="sidebar">
-            
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Categorias</h3>
                 <ul id="lista-categorias-sidebar">
                     </ul>
             </div>
 
+            <div id="sidebar-paleta-container" class="sidebar-section escondido">
+                <h3 class="sidebar-title">🎨 Paleta da Coleção</h3>
+                <div id="sidebar-paleta-cores" class="grid-paleta-sidebar">
+                    </div>
+            </div>
+
             <div class="sidebar-sobre">
                 <p>Na Melliê Crochês, fios viram joias. Somos uma loja virtual de brincos em crochê, onde cada peça é feita com dedicação e amor em cada ponto. 🪄🌷</p>
-                
                 <div class="box-aviso">
                     <strong>⚠️ ATENÇÃO:</strong>
                     <ul>
@@ -45,27 +49,15 @@
 
             <div class="sidebar-footer">
                 <div class="info-loja">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Natal+RN" target="_blank" class="link-contato">
-                        📍 Natal/RN
-                    </a>
-                    
-                    <a href="https://instagram.com/melliecroches" target="_blank" class="link-contato">
-                        📷 @melliecroches
-                    </a>
-                    
-                    <a href="https://wa.me/558499999999" target="_blank" class="link-contato">
-                        📞 (84) 9999-9999
-                    </a>
-
-                    <a href="mailto:contato@mellie.com.br" class="link-contato">
-                        ✉️ contato@mellie.com
-                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Natal+RN" target="_blank" class="link-contato">📍 Natal/RN</a>
+                    <a href="https://instagram.com/melliecroches" target="_blank" class="link-contato">📷 @melliecroches</a>
+                    <a href="https://wa.me/558499999999" target="_blank" class="link-contato">📞 (84) 9999-9999</a>
+                    <a href="mailto:contato@mellie.com.br" class="link-contato">✉️ contato@mellie.com</a>
                 </div>
             </div>
         </aside>
 
         <main class="area-produtos">
-            
             <div id="cabecalho-secao">
                 <h2 id="titulo-categoria-atual">Todas as Peças</h2>
             </div>
@@ -88,9 +80,7 @@
                 😕 Poxa, não encontramos nenhum item com esse nome.
             </div>
 
-            <div id="catalogo-principal">
-                </div>
-
+            <div id="catalogo-principal"></div>
         </main>
     </div>
 
@@ -100,33 +90,27 @@
 
     <div id="modal-produto" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="fecharModalProduto()">&times;</span>
-            
+            <span class="close-btn" onclick="fecharModalProduto()">×</span>
             <div class="modal-body">
                 <div class="modal-img-container">
                     <img id="modal-img" src="" alt="Produto">
-                    
-                    <div id="galeria-miniaturas" class="galeria-miniaturas">
-                        </div>
+                    <div id="galeria-miniaturas" class="galeria-miniaturas"></div>
                 </div>
-                
                 <div class="modal-info">
-                    <h2 id="modal-titulo">Nome do Produto</h2>
-                    <p id="modal-desc">Descrição...</p>
+                    <h2 id="modal-titulo"></h2>
+                    <p id="modal-desc"></p>
                     <p id="modal-tamanho" class="info-extra"></p>
                     
                     <div id="container-opcoes-cores"></div>
 
                     <div class="modal-preco-row">
-                        <span id="modal-preco">R$ 0,00</span>
+                        <span id="modal-preco"></span>
                     </div>
-
                     <div class="controles-qtd">
                         <button onclick="mudarQtd(-1)">-</button>
                         <span id="qtd-selecionada">1</span>
                         <button onclick="mudarQtd(1)">+</button>
                     </div>
-
                     <button id="btn-add-carrinho" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -135,55 +119,31 @@
 
     <div id="modal-checkout" class="modal">
         <div class="modal-content checkout-content">
-            <span class="close-btn" onclick="fecharModalCheckout()">&times;</span>
-            
+            <span class="close-btn" onclick="fecharModalCheckout()">×</span>
             <div class="checkout-header">
                 <h2>🛒 Seu Carrinho</h2>
-                <button id="btn-limpar-tudo" onclick="limparCarrinho()" class="btn-texto-vermelho">
-                    🗑️ Limpar tudo
-                </button>
+                <button id="btn-limpar-tudo" onclick="limparCarrinho()" class="btn-texto-vermelho">🗑️ Limpar tudo</button>
             </div>
-            
             <div id="lista-itens-carrinho" class="lista-carrinho-scroll"></div>
-
-            <div class="total-carrinho">
-                <span>Total do Pedido:</span>
-                <span id="valor-total-carrinho">R$ 0,00</span>
-            </div>
-
+            <div class="total-carrinho"><span>Total:</span> <span id="valor-total-carrinho">R$ 0,00</span></div>
             <hr class="divisor-suave">
-
             <div class="form-envio">
                 <h3>Como deseja receber?</h3>
-                
                 <div class="opcoes-entrega-moderna">
                     <input type="radio" name="entrega" id="tipo-retirada" value="retirada" checked onchange="alternarEntrega()">
-                    <label for="tipo-retirada" class="card-selecao">
-                        <span class="icone-entrega">📍</span>
-                        <span>Retirada</span>
-                    </label>
-
+                    <label for="tipo-retirada" class="card-selecao"><span class="icone-entrega">📍</span><span>Retirada</span></label>
                     <input type="radio" name="entrega" id="tipo-envio" value="envio" onchange="alternarEntrega()">
-                    <label for="tipo-envio" class="card-selecao">
-                        <span class="icone-entrega">🚚</span>
-                        <span>Entrega</span>
-                    </label>
+                    <label for="tipo-envio" class="card-selecao"><span class="icone-entrega">🚚</span><span>Entrega</span></label>
                 </div>
-
                 <div id="info-envio" class="escondido animacao-fade">
-                    <div class="input-grupo">
-                        <input type="text" id="end-rua" placeholder="Nome da Rua" class="input-moderno">
-                    </div>
+                    <div class="input-grupo"><input type="text" id="end-rua" placeholder="Nome da Rua" class="input-moderno"></div>
                     <div class="input-row">
                         <input type="text" id="end-numero" placeholder="Número" style="flex: 1;" class="input-moderno">
                         <input type="text" id="end-bairro" placeholder="Bairro" style="flex: 2;" class="input-moderno">
                     </div>
-                    <div class="input-grupo">
-                        <input type="text" id="end-cidade" placeholder="Cidade" class="input-moderno">
-                    </div>
+                    <div class="input-grupo"><input type="text" id="end-cidade" placeholder="Cidade" class="input-moderno"></div>
                     <p class="aviso-frete">ℹ️ O valor do frete será calculado no WhatsApp.</p>
                 </div>
-
                 <div id="info-retirada" class="animacao-fade">
                     <div class="box-retirada-moderna">
                         <p><strong>Ponto de Retirada:</strong></p>
@@ -191,16 +151,13 @@
                         <p class="subtexto">(Endereço completo enviado no WhatsApp)</p>
                     </div>
                 </div>
-
-                <button class="btn-confirmar-pedido" onclick="enviarPedidoWhatsapp()">
-                    Finalizar Pedido no WhatsApp
-                </button>
+                <button class="btn-confirmar-pedido" onclick="enviarPedidoWhatsapp()">✅ Finalizar Pedido no WhatsApp</button>
             </div>
         </div>
     </div>
 
     <div id="lightbox" class="lightbox" onclick="fecharLightbox(event)">
-        <span class="fechar-btn">&times;</span>
+        <span class="fechar-btn">×</span>
         <img class="lightbox-img" id="imagem-destaque" src="" alt="Zoom">
     </div>
 

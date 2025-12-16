@@ -655,3 +655,66 @@ header {
     .toolbar-filtros { flex-direction: column; gap: 10px; align-items: flex-start; }
     .grupo-ordenacao { width: 100%; justify-content: space-between; }
 }
+
+/* ===================================================
+   ESTILO DAS BOLINHAS DE COR (PALETA) - DELICADO
+   =================================================== */
+
+/* Container da Sidebar (Mantém igual) */
+.grid-paleta-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Container dentro do Modal (Agora mais limpo) */
+.preview-cores-modal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Espaço um pouco maior entre elas */
+    margin-bottom: 15px; /* Espaço até os selects */
+    /* Removido fundo e padding para ficar delicado */
+    align-items: center;
+}
+
+/* Títulozinho opcional antes das bolinhas no modal */
+.titulo-paleta-modal {
+    font-size: 0.9rem;
+    color: #888;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+/* A Bolinha em si (Mais delicada) */
+.bolinha-cor {
+    width: 20px; /* Menor */
+    height: 20px; /* Menor */
+    border-radius: 50%;
+    /* Borda muito sutil apenas para cores claras não sumirem no fundo branco */
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); 
+    cursor: help;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.bolinha-cor:hover {
+    transform: scale(1.1); /* Leve aumento ao passar o mouse */
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Tooltip (Mantido igual) */
+.bolinha-cor:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+}

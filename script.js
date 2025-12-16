@@ -75,20 +75,40 @@ function ativarItemSidebar(itemClicado) {
 function filtrarCategoria(categoria) {
     const titulo = document.getElementById('titulo-categoria-atual');
     const inputBusca = document.getElementById('campo-busca');
+    const containerPaleta = document.getElementById('sidebar-paleta-container');
+    const divPaleta = document.getElementById('sidebar-paleta-cores');
     
-    // Reseta a busca e o select de ordenação
     inputBusca.value = '';
     document.getElementById('select-ordenacao').value = 'padrao';
 
+    // 1. Lógica de Filtragem dos Produtos
     if (categoria === 'tudo') {
         titulo.textContent = 'Todas as Peças';
         produtosAtuais = [...produtos];
+        containerPaleta.classList.add('escondido'); // Esconde paleta em "Ver Tudo"
     } else {
         const nomeCat = (typeof NOMES_CATEGORIAS !== 'undefined' && NOMES_CATEGORIAS[categoria]) 
                         ? NOMES_CATEGORIAS[categoria] : categoria;
         titulo.textContent = nomeCat;
-
         produtosAtuais = produtos.filter(p => p.categoria === categoria);
+
+        // 2. Lógica da Paleta na Sidebar (NOVO)
+        // Verifica se existe paleta definida no produtos.js para essa categoria
+        if (typeof CORES_COLECAO !== 'undefined' && CORES_COLECAO[categoria]) {
+            divPaleta.innerHTML = ''; // Limpa anterior
+            
+            CORES_COLECAO[categoria].forEach(cor => {
+                const bolinha = document.createElement('div');
+                bolinha.className = 'bolinha-cor';
+                bolinha.style.backgroundColor = cor.hex;
+                bolinha.title = cor.nome; // Tooltip nativo
+                divPaleta.appendChild(bolinha);
+            });
+            
+            containerPaleta.classList.remove('escondido'); // Mostra
+        } else {
+            containerPaleta.classList.add('escondido'); // Esconde se não tiver cores
+        }
     }
 
     renderizarProdutos(produtosAtuais);
@@ -295,7 +315,7 @@ function removerDoCarrinho(index) {
 }
 
 // =================================================================
-// 4. MODAL DE PRODUTO
+// 4. MODAL DE PRODUTO (VISUAL DELICADO E PALETA ÚNICA)
 // =================================================================
 let produtoAtualModal = null;
 
@@ -305,7 +325,7 @@ function abrirModalProduto(produto) {
     const imgPrincipal = document.getElementById('modal-img');
     const galeriaContainer = document.getElementById('galeria-miniaturas');
     
-    // 1. Imagens e Galeria (Mantido igual)
+    // --- LÓGICA DE IMAGEM E GALERIA (Mantida) ---
     imgPrincipal.src = produto.imagem;
     imgPrincipal.onclick = () => abrirLightbox(imgPrincipal.src);
 
@@ -331,41 +351,73 @@ function abrirModalProduto(produto) {
         });
     }
 
-    // 2. Textos (Mantido igual)
+    // --- TEXTOS (Mantidos) ---
     document.getElementById('modal-titulo').textContent = produto.nome;
     document.getElementById('modal-desc').textContent = produto.descricao || "Peça artesanal feita com carinho.";
     document.getElementById('modal-preco').textContent = formatarMoeda(produto.preco);
-    
-    const tamEl = document.getElementById('modal-tamanho');
-    tamEl.textContent = produto.tamanho ? `Tamanho: ${produto.tamanho}` : '';
+    document.getElementById('modal-tamanho').textContent = produto.tamanho ? `Tamanho: ${produto.tamanho}` : '';
     document.getElementById('qtd-selecionada').textContent = '1';
 
-    // 3. SELECTS DE CORES (MUDANÇA AQUI!)
+    // --- ÁREA DE CORES (LÓGICA NOVA!) ---
     const containerCores = document.getElementById('container-opcoes-cores');
-    containerCores.innerHTML = '';
+    containerCores.innerHTML = ''; // Limpa tudo
 
     if (produto.camposCor && produto.camposCor.length > 0) {
+        
+        // PASSO 1: Coletar TODAS as cores únicas disponíveis para este produto
+        let coresUnicasDoProduto = new Map(); // Usamos Map para evitar duplicatas pelo nome da cor
+
         produto.camposCor.forEach(campo => {
-            const div = document.createElement('div');
-            div.className = 'grupo-select';
+            const coresDaPaleta = (typeof CORES_COLECAO !== 'undefined' && CORES_COLECAO[campo.paleta]) 
+                                  ? CORES_COLECAO[campo.paleta] : [];
             
-            // Adicionamos a opção padrão "Selecione..." vazia e desabilitada
-            let optionsHTML = `<option value="" selected disabled>Selecione a cor...</option>`;
+            coresDaPaleta.forEach(cor => {
+                // Adiciona no mapa se ainda não existir (chave é o nome da cor)
+                if (!coresUnicasDoProduto.has(cor.nome)) {
+                    coresUnicasDoProduto.set(cor.nome, cor);
+                }
+            });
+        });
+
+        // PASSO 2: Renderizar a paleta visual ÚNICA no topo
+        if (coresUnicasDoProduto.size > 0) {
+            const divPreview = document.createElement('div');
+            divPreview.className = 'preview-cores-modal';
             
-            const coresColecao = (typeof CORES_COLECAO !== 'undefined' && CORES_COLECAO[campo.paleta]) 
+            // Opcional: Um títulozinho discreto
+            // divPreview.innerHTML = '<span class="titulo-paleta-modal">Cores disponíveis:</span>';
+
+            coresUnicasDoProduto.forEach((cor) => {
+                 const bolinha = document.createElement('div');
+                 bolinha.className = 'bolinha-cor';
+                 bolinha.style.backgroundColor = cor.hex;
+                 bolinha.title = cor.nome;
+                 divPreview.appendChild(bolinha);
+            });
+            containerCores.appendChild(divPreview);
+        }
+
+        // PASSO 3: Renderizar os SELECTS abaixo da paleta
+        produto.camposCor.forEach(campo => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'grupo-select';
+            
+            const coresDaPaleta = (typeof CORES_COLECAO !== 'undefined' && CORES_COLECAO[campo.paleta]) 
                                  ? CORES_COLECAO[campo.paleta] : [];
-            
-            coresColecao.forEach(cor => {
+
+            let optionsHTML = `<option value="" selected disabled>Selecione a cor...</option>`;
+            coresDaPaleta.forEach(cor => {
                 optionsHTML += `<option value="${cor.nome}">${cor.nome}</option>`;
             });
 
-            div.innerHTML = `
+            // Apenas label e select, sem bolinhas aqui
+            wrapper.innerHTML = `
                 <label>${campo.label}:</label>
                 <select class="select-cor-dinamico" style="cursor:pointer;">
                     ${optionsHTML}
                 </select>
             `;
-            containerCores.appendChild(div);
+            containerCores.appendChild(wrapper);
         });
     }
 
