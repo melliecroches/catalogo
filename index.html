@@ -15,7 +15,6 @@
     <header>
         <div class="header-container">
             <h1 class="logo-site">Melliê Crochês</h1>
-            
             <div class="busca-wrapper">
                 <input type="text" id="campo-busca" placeholder="🔍 Buscar (ex: Pérola)...">
             </div>
@@ -25,18 +24,42 @@
     <div class="container-geral">
         
         <aside class="sidebar">
-            <div class="sidebar-header">
-                <h3>Categorias</h3>
-            </div>
             
-            <ul id="lista-categorias-sidebar">
-                </ul>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Categorias</h3>
+                <ul id="lista-categorias-sidebar">
+                    </ul>
+            </div>
+
+            <div class="sidebar-sobre">
+                <p>Na Melliê Crochês, fios viram joias. Somos uma loja virtual de brincos em crochê, onde cada peça é feita com dedicação e amor em cada ponto. 🪄🌷</p>
+                
+                <div class="box-aviso">
+                    <strong>⚠️ ATENÇÃO:</strong>
+                    <ul>
+                        <li>Este catálogo funciona como um sistema de pedidos. Após enviar, entraremos em contato via WhatsApp.</li>
+                        <li>Todo o processo de pagamento e atualizações é feito por WhatsApp.</li>
+                    </ul>
+                </div>
+            </div>
 
             <div class="sidebar-footer">
                 <div class="info-loja">
-                    <p>📍 Natal/RN</p>
-                    <p>📷 @melliecroches</p>
-                    <p>📞 (84) 9999-9999</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Natal+RN" target="_blank" class="link-contato">
+                        📍 Natal/RN
+                    </a>
+                    
+                    <a href="https://instagram.com/melliecroches" target="_blank" class="link-contato">
+                        📷 @melliecroches
+                    </a>
+                    
+                    <a href="https://wa.me/558499999999" target="_blank" class="link-contato">
+                        📞 (84) 9999-9999
+                    </a>
+
+                    <a href="mailto:contato@mellie.com.br" class="link-contato">
+                        ✉️ contato@mellie.com
+                    </a>
                 </div>
             </div>
         </aside>
@@ -49,7 +72,6 @@
 
             <div class="toolbar-filtros">
                 <span id="contador-produtos">Carregando...</span>
-                
                 <div class="grupo-ordenacao">
                     <label for="select-ordenacao">Ordenar por:</label>
                     <select id="select-ordenacao" onchange="aplicarOrdenacao()">
@@ -79,29 +101,23 @@
     <div id="modal-produto" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="fecharModalProduto()">&times;</span>
-            
             <div class="modal-body">
                 <div class="modal-img-container">
                     <img id="modal-img" src="" alt="Produto">
                 </div>
-                
                 <div class="modal-info">
-                    <h2 id="modal-titulo">Nome do Produto</h2>
-                    <p id="modal-desc">Descrição...</p>
+                    <h2 id="modal-titulo"></h2>
+                    <p id="modal-desc"></p>
                     <p id="modal-tamanho" class="info-extra"></p>
-                    
                     <div id="container-opcoes-cores"></div>
-
                     <div class="modal-preco-row">
-                        <span id="modal-preco">R$ 0,00</span>
+                        <span id="modal-preco"></span>
                     </div>
-
                     <div class="controles-qtd">
                         <button onclick="mudarQtd(-1)">-</button>
                         <span id="qtd-selecionada">1</span>
                         <button onclick="mudarQtd(1)">+</button>
                     </div>
-
                     <button id="btn-add-carrinho" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -112,28 +128,15 @@
         <div class="modal-content checkout-content">
             <span class="close-btn" onclick="fecharModalCheckout()">&times;</span>
             <h2>🛒 Seu Carrinho</h2>
-            
             <div id="lista-itens-carrinho"></div>
-
-            <div class="total-carrinho">
-                Total: <span id="valor-total-carrinho">R$ 0,00</span>
-            </div>
-
+            <div class="total-carrinho">Total: <span id="valor-total-carrinho">R$ 0,00</span></div>
             <hr>
-
             <div class="form-envio">
                 <h3>Forma de Entrega</h3>
                 <div class="opcoes-entrega">
-                    <label class="radio-custom">
-                        <input type="radio" name="entrega" value="retirada" checked onchange="alternarEntrega()"> 
-                        Retirada
-                    </label>
-                    <label class="radio-custom">
-                        <input type="radio" name="entrega" value="envio" onchange="alternarEntrega()"> 
-                        Entrega
-                    </label>
+                    <label class="radio-custom"><input type="radio" name="entrega" value="retirada" checked onchange="alternarEntrega()"> Retirada</label>
+                    <label class="radio-custom"><input type="radio" name="entrega" value="envio" onchange="alternarEntrega()"> Entrega</label>
                 </div>
-
                 <div id="info-envio" class="escondido">
                     <input type="text" id="end-rua" placeholder="Rua">
                     <div style="display: flex; gap: 10px;">
@@ -143,14 +146,12 @@
                     <input type="text" id="end-cidade" placeholder="Cidade" style="margin-top: 8px;">
                     <p class="aviso-frete">*Frete a combinar no WhatsApp.</p>
                 </div>
-
                 <div id="info-retirada">
                     <div class="box-retirada">
                         <p><strong>📍 Local de Retirada:</strong></p>
                         <p>Natal / RN</p>
                     </div>
                 </div>
-
                 <button class="btn-confirmar-pedido" onclick="enviarPedidoWhatsapp()">Confirmar Pedido no WhatsApp</button>
             </div>
         </div>
