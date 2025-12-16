@@ -165,7 +165,7 @@ const produtos = [
             { id: "petalas", label: "Cor das Pétalas", paleta: "florescer" },
             { id: "detalhes-borda", label: "Cor dos Detalhes da Borda", paleta: "florescer" }
         ],
-        descricao: "Destacar-se nunca foi tão fácil com o Brinco O Cravo. Seu design marcante é ideal para quem busca uma combinação de estilo e versatilidade. Seja para um encontro casual ou uma ocasião especial, este brinco adiciona um toque vibrante e moderno ao seu look, fazendo você se sentir confiante e única.",
+        descricao: "O Brinco O Cravo destaca seu estilo. Seu design marcante oferece versatilidade e um toque vibrante e moderno a qualquer look, garantindo que você se sinta confiante e única.",
         tamanho: "4 cm"
     },
 ];
