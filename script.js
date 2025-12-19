@@ -182,16 +182,27 @@ function renderizarProdutos(lista) {
     lista.forEach(produto => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        // Clique no card abre modal
+        
+        // Clique no card abre o modal de detalhes
         card.onclick = (e) => {
             if(e.target.tagName === 'BUTTON') return; 
             abrirModalProduto(produto);
         };
 
+        // Lógica para mostrar o preço antigo e o selo de "Novo Preço"
+        const temDesconto = produto.precoAnterior && produto.precoAnterior > produto.preco;
+        
+        const seloHTML = temDesconto ? `<div class="tag-desconto">Novo Preço</div>` : '';
+        
+        const precoHTML = temDesconto 
+            ? `<span class="preco-antigo">${formatarMoeda(produto.precoAnterior)}</span> ${formatarMoeda(produto.preco)}`
+            : formatarMoeda(produto.preco);
+
         card.innerHTML = `
+            ${seloHTML}
             <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
             <h3>${produto.nome}</h3>
-            <span class="price">${formatarMoeda(produto.preco)}</span>
+            <span class="price">${precoHTML}</span>
             <button class="btn-ver-detalhes" onclick="abrirModalProdutoId(${produto.id})">Ver Detalhes</button>
         `;
 
@@ -366,7 +377,19 @@ function abrirModalProduto(produto) {
     // 3. Informações
     document.getElementById('modal-titulo').textContent = produto.nome;
     document.getElementById('modal-desc').textContent = produto.descricao || "Peça artesanal exclusiva.";
-    document.getElementById('modal-preco').textContent = formatarMoeda(produto.preco);
+    
+    const precoElemento = document.getElementById('modal-preco');
+    if (produto.precoAnterior) {
+        // Se houver preço anterior, mostra o antigo riscado + o novo
+        precoElemento.innerHTML = `
+            <span class="preco-antigo">${formatarMoeda(produto.precoAnterior)}</span>
+            <span style="color: #d88ea3;">${formatarMoeda(produto.preco)}</span>
+        `;
+    } else {
+        // Se não houver, mostra apenas o preço normal
+        precoElemento.textContent = formatarMoeda(produto.preco);
+    }
+
     document.getElementById('modal-tamanho').textContent = produto.tamanho ? `Tamanho aprox: ${produto.tamanho}` : '';
     document.getElementById('qtd-selecionada').textContent = '1';
 

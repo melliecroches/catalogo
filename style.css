@@ -647,3 +647,30 @@ header {
     }
 
 }
+
+/* Estilos para a redução de preços */
+.tag-desconto {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #d88ea3; /* Rosa da sua marca */
+    color: white;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 4px;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.preco-antigo {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.preco-atual-destaque {
+    color: #d88ea3;
+    font-weight: 600;
+}

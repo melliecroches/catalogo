@@ -35,6 +35,7 @@ const produtos = [
         id: 1,
         nome: "Brinco Flor Encantada",
         preco: 22.00,
+        precoAnterior: 25.00,
         imagem: "imagens/florescer/f01_1.jpg",
         categoria: "florescer", 
         camposCor: [
@@ -51,6 +52,7 @@ const produtos = [
         id: 2,
         nome: "Brinco Girassol",
         preco: 10.00,
+        precoAnterior: 15.00,
         imagem: "imagens/florescer/f02_1.jpg",
         categoria: "florescer", 
         descricao: "Deixe a energia dos girassóis iluminar o seu dia com o Brinco Girassol, trazendo vividez e alegria.",
@@ -63,6 +65,7 @@ const produtos = [
         id: 3,
         nome: "Brinco Pétalas de Cristal",
         preco: 18.00,
+        precoAnterior: 20.00,
         imagem: "imagens/florescer/f03_1.jpg",
         categoria: "florescer", 
         camposCor: [
@@ -78,6 +81,7 @@ const produtos = [
         id: 4,
         nome: "Brinco Flor Majestosa",
         preco: 25.00,
+        precoAnterior: 28.00,
         imagem: "imagens/florescer/f04_1.jpg",
         categoria: "florescer", 
         camposCor: [
@@ -93,6 +97,7 @@ const produtos = [
         id: 5,
         nome: "Brinco Flor Delicata",
         preco: 18.00,
+        precoAnterior: 20.00,
         imagem: "imagens/florescer/f05_1.jpg",
         categoria: "florescer", 
         camposCor: [
@@ -109,6 +114,7 @@ const produtos = [
         id: 6,
         nome: "Brinco Flor Harmonia",
         preco: 20.00,
+        precoAnterior: 22.00,
         imagem: "imagens/florescer/f06.jpg",
         categoria: "florescer", 
         camposCor: [
@@ -121,6 +127,7 @@ const produtos = [
         id: 7,
         nome: "Brinco Dupla Floral",
         preco: 10.00,
+        precoAnterior: 15.00,
         imagem: "imagens/florescer/f07.jpg",
         categoria: "florescer", 
         camposCor: [
@@ -134,6 +141,7 @@ const produtos = [
         id: 8,
         nome: "Brinco Flor Lumina",
         preco: 18.00,
+        precoAnterior: 20.00,
         imagem: "imagens/florescer/f08.jpg",
         categoria: "florescer", 
         camposCor: [
